@@ -4,6 +4,3 @@ addons:
   apt:
     packages:
       - junit
-
-before_install:
-  - cd java
