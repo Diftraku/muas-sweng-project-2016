@@ -1,7 +1,5 @@
 package FunktioLaskin;
 
-import FunktioLaskin.Laskin;
-
 public class Main {
 
     public static void main(String[] args) {
