@@ -29,9 +29,9 @@
     <fileset dir="/usr/share/java">
       <include name="hamcrest-*.jar"/>
     </fileset>
-    <fileset dir="/usr/share/java/hamcrest">
+    <!--<fileset dir="/usr/share/java/hamcrest">
       <include name="*.jar"/>
-    </fileset>
+    </fileset>-->
     <path refid="classpath.base" />
     <path refid="classpath.lib" />
   </path>
