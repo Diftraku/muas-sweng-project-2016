@@ -23,7 +23,15 @@
   <path id="classpath.test">
     <pathelement location="${build}/tests/classes"/>
     <!-- this will probably break -->
-    <pathelement location="/usr/share/java/junit.jar"/>
+    <fileset dir="/usr/share/java">
+      <include name="junit*.jar"/>
+    </fileset>
+    <fileset dir="/usr/share/java">
+      <include name="hamcrest-*.jar"/>
+    </fileset>
+    <fileset dir="/usr/share/java/hamcrest">
+      <include name="*.jar"/>
+    </fileset>
     <path refid="classpath.base" />
     <path refid="classpath.lib" />
   </path>
