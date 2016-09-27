@@ -40,11 +40,32 @@ public class Laskin {
 
     public void neliojuuri(double n) throws ArithmeticException {
     	edellinen = tulos;
-        //for (;;) ;
-
-        tulos = (double)Math.sqrt(n);
-
+    	if (n < 0){
+    		tulos = 0;
+    	}else{
+    		tulos = (double)Math.sqrt(n);
     }
+    }
+    public void potenssi(double n){
+    	//n potensiin y
+    	tulos = Math.pow(tulos,n);
+	}
+
+    public void tan(double n) {
+        double radiaani = Math.toRadians(n);
+        tulos = Math.tan(radiaani);
+    }
+
+    public void sin(double n) {
+        double radiaani = Math.toRadians(n);
+        tulos = Math.sin(radiaani);
+    }
+
+    public void cos(double n) {
+        double radiaani = Math.toRadians(n);
+        tulos = Math.cos(radiaani);
+    }
+
     public void edellinen(){
     	tulos = edellinen;
     }
