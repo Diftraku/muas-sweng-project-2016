@@ -22,6 +22,8 @@
 
   <path id="classpath.test">
     <pathelement location="${build}/tests/classes"/>
+    <!-- this will probably break -->
+    <pathelement location="/usr/share/java/junit.jar"/>
     <path refid="classpath.base" />
     <path refid="classpath.lib" />
   </path>
