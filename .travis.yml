@@ -3,7 +3,7 @@ language: java
 addons:
   apt:
     packages:
-      - junit
+      - junit4
 
 script:
 - ant all
