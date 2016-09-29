@@ -162,6 +162,31 @@ public class LaskinTest {
     	laskin.tan(-15);
     	assertEquals(-0.27, laskin.annaTulos(), 0.1);
     }
+    @Test
+    public void arcsin() throws Exception {
+    	laskin.arcsin(0.5);
+    	assertEquals(30, laskin.annaTulos(), 0.1);
+    	//Testaa virheellisen syötteen
+    	laskin.arcsin(2);
+    	assertEquals(-1, laskin.annaTulos(), 0.1);
+    }
+
+    @Test
+    public void arccos() throws Exception {
+    	laskin.arccos(0.5);
+    	assertEquals(60, laskin.annaTulos(), 0.1);
+    	//Testaa virheellisen syötteen
+    	laskin.arccos(1.5);
+    	assertEquals(-1, laskin.annaTulos(), 0.1);
+    }
+
+    @Test
+    public void arctan() throws Exception {
+    	laskin.arctan(0.5);
+    	assertEquals(26.6, laskin.annaTulos(), 0.1);
+    	laskin.arctan(12);
+    	assertEquals(85.2, laskin.annaTulos(), 0.1);
+    }
 /*
     @BeforeClass
     public void virtaON() throws Exception {

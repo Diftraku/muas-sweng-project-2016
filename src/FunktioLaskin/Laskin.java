@@ -67,6 +67,26 @@ public class Laskin {
         double radiaani = Math.toRadians(n);
         tulos = Math.cos(radiaani);
     }
+    public void arctan(double n) {
+        tulos = Math.toDegrees(Math.atan(n));
+    }
+    public void arcsin(double n) {
+    	if (n > 0 && n < 1){
+    		tulos = Math.toDegrees(Math.asin(n));
+    	}
+    	else{
+    		tulos = -1;
+    	}
+    }
+
+    public void arccos(double n) {
+    	if (n > 0 && n < 1){
+        tulos = Math.toDegrees(Math.acos(n));
+    	}
+    	else{
+    	tulos = -1;
+    	}
+    }
 
     public void edellinen(){
     	tulos = edellinen;
