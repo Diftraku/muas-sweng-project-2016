@@ -1,38 +1,25 @@
 package FunktioLaskin;
 
-public class Main {
-
-    public static void main(String[] args) {
-        Laskin laskin = new Laskin();
-
-        laskin.virtaON();
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 
 
-        /*
-        laskin.lisaa(500);
-        System.out.println("Lisää 500    = " + laskin.annaTulos());
+public class Main extends Application {
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			BorderPane root = new BorderPane();
+			Scene scene = new Scene(root,400,400);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-        laskin.lisaa(200);
-        System.out.println("Lisää 200    = " + laskin.annaTulos());
-
-        laskin.vahenna(100);
-        System.out.println("Vähennä 100  = " + laskin.annaTulos());
-
-        laskin.jaa(2);
-        System.out.println("Jaa 2:lla    = " + laskin.annaTulos());
-
-        laskin.kerro(10);
-        System.out.println("Kerro 10:llä = " + laskin.annaTulos());
-
-        laskin.edellinen();
-        System.out.println("edellinen : " +laskin.annaTulos());
-
-        System.out.println("...Nollataan...");
-        laskin.nollaa();
-
-        laskin.lisaa(500);
-        System.out.println("Lisää 500    = " + laskin.annaTulos());
-*/
-        laskin.virtaOFF();
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 }

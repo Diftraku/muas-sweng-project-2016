@@ -1,4 +1,6 @@
 package FunktioLaskin;
+
+
 public class Laskin {
 
     private double tulos;  // Muuttuja tulokselle
