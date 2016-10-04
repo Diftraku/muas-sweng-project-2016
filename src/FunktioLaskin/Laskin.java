@@ -6,6 +6,10 @@ public class Laskin {
     private double tulos;  // Muuttuja tulokselle
     private double edellinen;
 
+    public void setTulos(double t){
+    	this.tulos = t;
+    }
+
     public void nollaa() {
     	edellinen = tulos;
         tulos = 0;
