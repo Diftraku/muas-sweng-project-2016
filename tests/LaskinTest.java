@@ -1,4 +1,3 @@
-package laskin;
 import static org.junit.Assert.*;
 
 import org.junit.*;
@@ -166,7 +165,7 @@ public class LaskinTest {
     public void arcsin() throws Exception {
     	laskin.arcsin(0.5);
     	assertEquals(30, laskin.annaTulos(), 0.1);
-    	//Testaa virheellisen syötteen
+    	//Testaa virheellisen syï¿½tteen
     	laskin.arcsin(2);
     	assertEquals(-1, laskin.annaTulos(), 0.1);
     }
@@ -175,7 +174,7 @@ public class LaskinTest {
     public void arccos() throws Exception {
     	laskin.arccos(0.5);
     	assertEquals(60, laskin.annaTulos(), 0.1);
-    	//Testaa virheellisen syötteen
+    	//Testaa virheellisen syï¿½tteen
     	laskin.arccos(1.5);
     	assertEquals(-1, laskin.annaTulos(), 0.1);
     }
