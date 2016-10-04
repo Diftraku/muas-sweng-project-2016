@@ -20,6 +20,7 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 	private DoubleProperty value = new SimpleDoubleProperty();
+	private TextField screen;
 	private static final String[][] template = {
 		      { "7", "8", "9", "/" },
 		      { "4", "5", "6", "*" },
@@ -48,11 +49,10 @@ public class Main extends Application {
 	    return layout;
 	}
 	private TextField createScreen() {
-	    final TextField screen = new TextField();
+	    screen = new TextField();
 	    screen.setStyle("-fx-background-color: aquamarine;");
 	    screen.setAlignment(Pos.CENTER_RIGHT);
 	    screen.setEditable(false);
-	    screen.textProperty().bind(Bindings.format("%.0f", value));
 	    return screen;
 	}
 	private TilePane createButtons() {
@@ -71,9 +71,29 @@ public class Main extends Application {
 	    Button button = new Button(s);
 	    button.setStyle("-fx-base: beige;");
 	    button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+	    button.setOnAction(myHandler);
 	    return button;
 	}
+	final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
 
+        @Override
+        public void handle(final ActionEvent e) {
+        	Button button = (Button)e.getSource();
+        	String value = button.getText();
+        	if(value == "c") {
+        		screen.clear();
+        	}else {
+        		if (value == "/" || value == "*" || value == "+" || value == "-") {
+
+        		}
+        		if(screen.getText() != null && !screen.getText().isEmpty()) {
+        			screen.appendText(value);
+        		}else {
+        			screen.setText(value);
+        		}
+        	}
+        }
+	};
 
 	public static void main(String[] args) {
 		launch(args);
