@@ -10,6 +10,9 @@ public class Control {
 	ArrayList merkit;
 	private String edellinen = "tyhjä";
 	private int miinus = 0;
+	private String luku;
+	private double luku1;
+	private int useDes = 0;
 
 	public void Control(){
 		laskin = new Laskin();
@@ -55,21 +58,37 @@ public class Control {
 		//main.setTulos(laskin.annaTulos());
 	}
 
-	public void setArvo(Double arvo){
-		if (miinus == 0){
-			arvot.add(arvo);
-			edellinen = "numero";
+	public void setValue(String value){
+		if (edellinen == "numero"){
+			if (luku == "0"){
+				luku = value;
+			}
+			else{
+			luku.concat(value);
+			}
 		}
-		if (miinus == 1){
-			arvot.add(0-arvo);
-			edellinen = "numero";
+		if (edellinen == "merkki"){
+			luku = value;
 		}
+		edellinen = "numero";
 	}
+	public void setArvo(Double arvo){
+			if (miinus == 0){
+				arvot.add(arvo);
+			}
+			if (miinus == 1){
+				arvot.add(0-arvo);
+			}
+		}
 	public void setMerkki(String merkki){
 		if (edellinen == "numero"){
-			merkit.add(merkki);
-			edellinen = merkki;
+				luku1 = Double.parseDouble(luku);
+				setArvo(luku1);
+				merkit.add(merkki);
+				edellinen = merkki;
+				miinus = 0;
 		}
+
 		else{
 			if (merkki == "erotus"){
 				miinus = 1;
@@ -81,3 +100,4 @@ public class Control {
 		}
 	}
 }
+
