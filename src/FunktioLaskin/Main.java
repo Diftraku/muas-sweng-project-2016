@@ -19,6 +19,7 @@ import javafx.stage.StageStyle;
 
 
 public class Main extends Application {
+	private Control control;
 	private DoubleProperty value = new SimpleDoubleProperty();
 	private TextField screen;
 	private static final String[][] template = {
@@ -30,6 +31,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) {
+		control = new Control();
 		final TextField screen  = createScreen();
 	    final TilePane  buttons = createButtons();
 
@@ -84,7 +86,14 @@ public class Main extends Application {
         		screen.clear();
         	}else {
         		if (value == "/" || value == "*" || value == "+" || value == "-") {
-
+        			control.setMerkki(value);
+        		}
+        		if (value == "="){
+        			control.laske();
+        			screen.setText(Double.toString(control.getTulos()));
+        		}
+        		else{
+        			control.setValue(value);
         		}
         		if(screen.getText() != null && !screen.getText().isEmpty()) {
         			screen.appendText(value);

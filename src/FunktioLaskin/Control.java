@@ -6,12 +6,12 @@ public class Control {
 
 	private Laskin laskin;
 	private Main main;
-	ArrayList arvot;
-	ArrayList merkit;
+	ArrayList<Double> arvot;
+	ArrayList<String> merkit;
 	private String edellinen = "tyhjä";
 	private int miinus = 0;
 	private String luku;
-	private double luku1;
+	private double luku1 = 0;
 	private int useDes = 0;
 
 	public void Control(){
@@ -21,16 +21,19 @@ public class Control {
 		merkit = new ArrayList();
 	}
 
+	public double getTulos(){
+		return laskin.annaTulos();
+	}
 	public void laske(){
-		for (int i = 0; i < merkit.size(); i++){
-			if (merkit.get(i) == "kerto"){
+		for (int i = 0; i <= merkit.size(); i++){
+			if (merkit.get(i) == "*"){
 				laskin.setTulos((double) arvot.get(i));
 				laskin.kerro((double) arvot.get(i+1));
 				merkit.remove(i);
 				arvot.set(i, laskin.annaTulos());
 				arvot.remove(i+1);
 			}
-			if (merkit.get(i) == "jako"){
+			if (merkit.get(i) == "/"){
 				laskin.setTulos((double) arvot.get(i));
 				laskin.jaa((double) arvot.get(i+1));
 				merkit.remove(i);
@@ -38,15 +41,15 @@ public class Control {
 				arvot.remove(i+1);
 			}
 		}
-		for (int i = 0; i < merkit.size(); i++){
-			if (merkit.get(i) == "summa"){
+		for (int i = 0; i <= merkit.size(); i++){
+			if (merkit.get(i) == "+"){
 				laskin.setTulos((double) arvot.get(i));
 				laskin.lisaa((double) arvot.get(i+1));
 				merkit.remove(i);
 				arvot.set(i, laskin.annaTulos());
 				arvot.remove(i+1);
 			}
-			if (merkit.get(i) == "erotus"){
+			if (merkit.get(i) == "-"){
 				laskin.setTulos((double) arvot.get(i));
 				laskin.vahenna((double) arvot.get(i+1));
 				merkit.remove(i);
@@ -59,31 +62,29 @@ public class Control {
 	}
 
 	public void setValue(String value){
+		if (edellinen == "tyhjä"){
+			luku = value;
+		}
 		if (edellinen == "numero"){
-			if (luku == "0"){
-				luku = value;
-			}
-			else{
 			luku.concat(value);
-			}
 		}
 		if (edellinen == "merkki"){
 			luku = value;
 		}
 		edellinen = "numero";
 	}
-	public void setArvo(Double arvo){
+	public void setArvo(String arvo){
+		luku1 = Double.parseDouble(arvo);
 			if (miinus == 0){
-				arvot.add(arvo);
+				arvot.add(luku1);
 			}
 			if (miinus == 1){
-				arvot.add(0-arvo);
+				arvot.add(0-luku1);
 			}
 		}
 	public void setMerkki(String merkki){
 		if (edellinen == "numero"){
-				luku1 = Double.parseDouble(luku);
-				setArvo(luku1);
+				setArvo(luku);
 				merkit.add(merkki);
 				edellinen = merkki;
 				miinus = 0;
