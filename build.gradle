@@ -2,11 +2,7 @@ group 'muas-sweng-project-2016'
 version '0.1'
 
 apply plugin: 'java'
-
-// Declares binary plugin and its required JavaFX classpath
 apply from: "http://dl.bintray.com/content/shemnon/javafx-gradle/8.1.1/javafx.plugin"
-//apply from: 'http://dl.bintray.com/content/shemnon/javafx-gradle/javafx.plugin'
-//apply from: 'javafx.plugin'
 
 sourceCompatibility = 1.5
 
@@ -24,6 +20,12 @@ sourceSets {
 			srcDirs = ['tests']
 		}
 	}
+}
+
+test {
+    testLogging {
+        events "started", "passed", "skipped", "failed", "standardOut", "standardError"
+    }
 }
 
 repositories {
