@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/muas-sweng-project-2016.iml" filepath="$PROJECT_DIR$/muas-sweng-project-2016.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FunktioLaskin.iml" filepath="$PROJECT_DIR$/.idea/modules/FunktioLaskin.iml" />
     </modules>
   </component>
 </project>

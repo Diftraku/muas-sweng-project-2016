@@ -1,0 +1,37 @@
+group 'muas-sweng-project-2016'
+version '0.1'
+
+apply plugin: 'java'
+apply from: "http://dl.bintray.com/content/shemnon/javafx-gradle/8.1.1/javafx.plugin"
+
+sourceCompatibility = 1.5
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src']
+		}
+		resources {
+			srcDirs = ['src/resources']
+		}
+	}
+	test {
+		java {
+			srcDirs = ['tests']
+		}
+	}
+}
+
+test {
+    testLogging {
+        events "started", "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

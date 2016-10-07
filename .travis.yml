@@ -1,9 +1,4 @@
 language: java
 
-addons:
-  apt:
-    packages:
-      - junit4
-
-script:
-- ant all
+jdk:
+  - oraclejdk8
