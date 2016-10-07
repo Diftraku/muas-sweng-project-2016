@@ -14,18 +14,18 @@ public class Control {
 	private double luku1 = 0;
 	private int useDes = 0;
 
-	public void Control(){
+	public Control(){
 		laskin = new Laskin();
 		main = new Main();
-		arvot = new ArrayList();
-		merkit = new ArrayList();
+		arvot = new ArrayList<Double>();
+		merkit = new ArrayList<String>();
 	}
 
 	public double getTulos(){
 		return laskin.annaTulos();
 	}
 	public void laske(){
-		for (int i = 0; i <= merkit.size(); i++){
+		for (int i = 0; i < merkit.size(); i++){
 			if (merkit.get(i) == "*"){
 				laskin.setTulos((double) arvot.get(i));
 				laskin.kerro((double) arvot.get(i+1));
@@ -41,7 +41,7 @@ public class Control {
 				arvot.remove(i+1);
 			}
 		}
-		for (int i = 0; i <= merkit.size(); i++){
+		for (int i = 0; i < merkit.size(); i++){
 			if (merkit.get(i) == "+"){
 				laskin.setTulos((double) arvot.get(i));
 				laskin.lisaa((double) arvot.get(i+1));

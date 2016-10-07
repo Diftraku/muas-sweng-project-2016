@@ -89,6 +89,7 @@ public class Main extends Application {
         			control.setMerkki(value);
         		}
         		if (value == "="){
+        			control.setMerkki(value);
         			control.laske();
         			screen.setText(Double.toString(control.getTulos()));
         		}
