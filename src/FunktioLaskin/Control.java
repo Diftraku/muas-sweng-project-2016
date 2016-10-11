@@ -121,7 +121,7 @@ public class Control {
 		}
 
 		else{
-			if (merkki == "erotus"){
+			if (merkki == "-"){
 				miinus = 1;
 				edellinen = "merkki";
 			}
