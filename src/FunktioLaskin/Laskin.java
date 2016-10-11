@@ -3,15 +3,11 @@ package FunktioLaskin;
 
 public class Laskin {
 
-    private double tulos;  // Muuttuja tulokselle
-    private double edellinen;
+    private double tulos=0;  // Muuttuja tulokselle
+    private double edellinen=0;
 
-    public void setTulos(double t){
-    	this.tulos = t;
-    }
 
     public void nollaa() {
-    	edellinen = tulos;
         tulos = 0;
     }
 

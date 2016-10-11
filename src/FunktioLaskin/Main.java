@@ -84,22 +84,28 @@ public class Main extends Application {
         	String value = button.getText();
         	if(value == "c") {
         		screen.clear();
-        	}else {
+        		control.nollaa();
+        	}
+        	else {
         		if (value == "/" || value == "*" || value == "+" || value == "-") {
         			control.setMerkki(value);
         		}
-        		if (value == "="){
+        		else if (value == "="){
         			control.setMerkki(value);
         			control.laske();
         			screen.setText(Double.toString(control.getTulos()));
         		}
-        		else{
+        		else if (value == "0" || value == "1" || value == "2" || value == "3" || value == "4" || value == "5" || value == "6" || value == "7" || value == "8" || value == "9" || value == "."){
         			control.setValue(value);
         		}
         		if(screen.getText() != null && !screen.getText().isEmpty()) {
-        			screen.appendText(value);
+        			if (value != "="){
+        				screen.appendText(value);
+        			}
         		}else {
+        			if (value != "="){
         			screen.setText(value);
+        			}
         		}
         	}
         }

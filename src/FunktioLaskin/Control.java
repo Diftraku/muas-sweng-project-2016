@@ -12,7 +12,6 @@ public class Control {
 	private int miinus = 0;
 	private String luku;
 	private double luku1 = 0;
-	private int useDes = 0;
 
 	public Control(){
 		laskin = new Laskin();
@@ -24,17 +23,23 @@ public class Control {
 	public double getTulos(){
 		return laskin.annaTulos();
 	}
+	public void nollaa(){
+		laskin.nollaa();
+		edellinen = "tyhjä";
+		arvot.clear();
+		merkit.clear();
+	}
 	public void laske(){
 		for (int i = 0; i < merkit.size(); i++){
 			if (merkit.get(i) == "*"){
-				laskin.setTulos((double) arvot.get(i));
+				laskin.lisaa((double) arvot.get(i));
 				laskin.kerro((double) arvot.get(i+1));
 				merkit.remove(i);
 				arvot.set(i, laskin.annaTulos());
 				arvot.remove(i+1);
 			}
-			if (merkit.get(i) == "/"){
-				laskin.setTulos((double) arvot.get(i));
+			else if (merkit.get(i) == "/"){
+				laskin.lisaa((double) arvot.get(i));
 				laskin.jaa((double) arvot.get(i+1));
 				merkit.remove(i);
 				arvot.set(i, laskin.annaTulos());
@@ -43,14 +48,14 @@ public class Control {
 		}
 		for (int i = 0; i < merkit.size(); i++){
 			if (merkit.get(i) == "+"){
-				laskin.setTulos((double) arvot.get(i));
+				laskin.lisaa((double) arvot.get(i));
 				laskin.lisaa((double) arvot.get(i+1));
 				merkit.remove(i);
 				arvot.set(i, laskin.annaTulos());
 				arvot.remove(i+1);
 			}
-			if (merkit.get(i) == "-"){
-				laskin.setTulos((double) arvot.get(i));
+			else if (merkit.get(i) == "-"){
+				laskin.lisaa((double) arvot.get(i));
 				laskin.vahenna((double) arvot.get(i+1));
 				merkit.remove(i);
 				arvot.set(i, laskin.annaTulos());
@@ -65,16 +70,20 @@ public class Control {
 		if (edellinen == "tyhjä"){
 			luku = value;
 		}
-		if (edellinen == "numero"){
+		else if (edellinen == "numero"){
 			luku.concat(value);
 		}
-		if (edellinen == "merkki"){
+		else if (edellinen == "merkki"){
 			luku = value;
 		}
 		edellinen = "numero";
 	}
 	public void setArvo(String arvo){
-		luku1 = Double.parseDouble(arvo);
+		try {
+			luku1 = Double.parseDouble(arvo);
+	   }catch (NumberFormatException e){
+	       System.out.println(arvo);
+	   }
 			if (miinus == 0){
 				arvot.add(luku1);
 			}
@@ -84,16 +93,23 @@ public class Control {
 		}
 	public void setMerkki(String merkki){
 		if (edellinen == "numero"){
+			if (merkki == "="){
+				setArvo(luku);
+				edellinen = "merkki";
+				miinus = 0;
+			}
+			else{
 				setArvo(luku);
 				merkit.add(merkki);
-				edellinen = merkki;
+				edellinen = "merkki";
 				miinus = 0;
+			}
 		}
 
 		else{
 			if (merkki == "erotus"){
 				miinus = 1;
-				edellinen = merkki;
+				edellinen = "merkki";
 			}
 			else{
 				//Virheilmoitus
