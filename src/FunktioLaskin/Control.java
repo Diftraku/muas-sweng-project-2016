@@ -31,7 +31,21 @@ public class Control {
 	}
 	public void laske(){
 		for (int i = 0; i < merkit.size(); i++){
-			if (merkit.get(i) == "*"){
+			if (merkit.get(i) == "^"){
+				laskin.lisaa((double) arvot.get(i));
+				laskin.potenssi((double) arvot.get(i+1));
+				merkit.remove(i);
+				arvot.set(i, laskin.annaTulos());
+				arvot.remove(i+1);
+			}
+			else if (merkit.get(i) == "N"){
+				laskin.lisaa((double) arvot.get(i));
+				laskin.neliojuuri((double) arvot.get(i+1));
+				merkit.remove(i);
+				arvot.set(i, laskin.annaTulos());
+				arvot.remove(i+1);
+			}
+			else if (merkit.get(i) == "*"){
 				laskin.lisaa((double) arvot.get(i));
 				laskin.kerro((double) arvot.get(i+1));
 				merkit.remove(i);

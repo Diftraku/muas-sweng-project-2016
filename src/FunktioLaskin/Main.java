@@ -23,10 +23,11 @@ public class Main extends Application {
 	private DoubleProperty value = new SimpleDoubleProperty();
 	private TextField screen;
 	private static final String[][] template = {
-		      { "7", "8", "9", "/" },
-		      { "4", "5", "6", "*" },
-		      { "1", "2", "3", "-" },
-		      { "0", "c", "=", "+" }
+			  { "^", "N", ".", "(", ")"},
+		      { "7", "8", "9", "/", "sin"},
+		      { "4", "5", "6", "*", "cos" },
+		      { "1", "2", "3", "-", "tan" },
+		      { "0", "c", "=", "+", "Pii" }
 		};
 
 	@Override
@@ -87,7 +88,7 @@ public class Main extends Application {
         		control.nollaa();
         	}
         	else {
-        		if (value == "/" || value == "*" || value == "+" || value == "-") {
+        		if (value == "/" || value == "*" || value == "+" || value == "-" || value == "^" || value == "N") {
         			control.setMerkki(value);
         		}
         		else if (value == "="){
