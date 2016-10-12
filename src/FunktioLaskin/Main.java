@@ -88,7 +88,7 @@ public class Main extends Application {
         		control.nollaa();
         	}
         	else {
-        		if (value == "/" || value == "*" || value == "+" || value == "-" || value == "^" || value == "N") {
+        		if (value == "/" || value == "*" || value == "+" || value == "-" || value == "^") {
         			control.setMerkki(value);
         		}
         		else if (value == "="){
@@ -97,7 +97,11 @@ public class Main extends Application {
         			screen.setText(Double.toString(control.getTulos()));
         		}
         		else if (value == "0" || value == "1" || value == "2" || value == "3" || value == "4" || value == "5" || value == "6" || value == "7" || value == "8" || value == "9" || value == "."){
-        			control.setValue(value);
+        			control.setLuku(value);
+        		}
+        		else if (value == "(" || value == ")" ){
+        			control.sulut(value);
+
         		}
         		if(screen.getText() != null && !screen.getText().isEmpty()) {
         			if (value != "="){
