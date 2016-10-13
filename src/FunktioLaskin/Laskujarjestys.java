@@ -9,7 +9,9 @@ public class Laskujarjestys {
 	ArrayList<String> emerkit;
 	private int eka = 0;
 	private double tulos = 0;
-
+	/*
+	 * Constructor
+	 */
 	public Laskujarjestys(){
 		laskin = new Laskin();
 		arvot = new ArrayList<Double>();
@@ -17,7 +19,9 @@ public class Laskujarjestys {
 		emerkit = new ArrayList<String>();
 
 	}
-
+	/*
+	 *Calculates the counting order
+	 */
 	public void laske(){
 
 		for (int i = 0; i < merkit.size(); i++){
@@ -67,16 +71,28 @@ public class Laskujarjestys {
 		//Asetetaan tulos kontrollerille
 		tulos = laskin.annaTulos();
 	}
+	/*
+	 * Sets the operations list for this class
+	 */
 	public void setMerkitList(ArrayList<String> Merkit){
 		this.merkit = Merkit;
 	}
+	/*
+	 * Set the numbers list for this class
+	 */
 	public void setArvottList(ArrayList<Double> Arvot){
 		this.arvot = Arvot;
 	}
-
+	/*
+	 * Gets the intermediate result
+	 * @return double intermediate result
+	 */
 	public double getValiTulos(){
 		return tulos;
 	}
+	/*
+	 * Clears the operation and number lists and result
+	 */
 	public void nollaa(){
 		eka = 0;
 		tulos = 0;

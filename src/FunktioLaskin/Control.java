@@ -2,6 +2,9 @@ package FunktioLaskin;
 
 import java.util.ArrayList;
 
+/*
+ * Controller class
+ */
 public class Control {
 
 	private Laskin laskin;
@@ -15,7 +18,9 @@ public class Control {
 	private String luku;
 	private double luku1 = 0;
 	private double Tulos;
-
+/*
+ * Constructor
+ */
 	public Control(){
 		laskin = new Laskin();
 		main = new Main();
@@ -24,7 +29,9 @@ public class Control {
 		merkit = new ArrayList<String>();
 		emerkit = new ArrayList<String>();
 	}
-
+	/*
+	 * clears the calculator
+	 */
 	public void nollaa(){
 		laskin.nollaa();
 		edellinen = "tyhja";
@@ -33,13 +40,18 @@ public class Control {
 		merkit.clear();
 		Tulos = 0;
 	}
-
+	/*
+	 * Counts the calculation in the right order
+	 */
 	public void laske(){
 		laske.setArvottList(arvot);
 		laske.setMerkitList(merkit);
 		laske.laske();
 		Tulos = laske.getValiTulos();
 	}
+	/*
+	 * Counts the square root
+	 */
 	public void laske2(){
 		for (int i = 0; i < emerkit.size(); i++){
 			if (emerkit.get(i) == "N"){
@@ -47,7 +59,9 @@ public class Control {
 			}
 		}
 	}
-
+	/*
+	 * Sets last number so it can be used in the next calculation
+	 */
 	public void setLuku(String value){
 		if (edellinen == "tyhja"){
 			luku = value;
@@ -60,6 +74,9 @@ public class Control {
 		}
 		edellinen = "numero";
 	}
+	/*
+	 * Sets a number in the number array
+	 */
 	public void setArvo(String arvo){
 		try {
 			luku1 = Double.parseDouble(arvo);
@@ -73,6 +90,9 @@ public class Control {
 				arvot.add(0-luku1);
 			}
 		}
+	/*
+	 * Sets operation in the operation array
+	 */
 	public void setMerkki(String merkki){
 		if (edellinen == "numero"){
 			if (merkki == "="){
@@ -98,15 +118,22 @@ public class Control {
 			}
 		}
 	}
+	/*
+	 * Check if there are brackets (In progress)
+	 */
 	public void sulut(String sulku){
 		if (sulku == "("){
 
 		}
 	}
+
 	public void setEmerkki(String string){
 		emerkit.add(string);
 	}
-
+	/*
+	 * returns the result
+	 * @return Tulos Tulos is the result of the calculation
+	 */
 	public double getTulos(){
 		return Tulos;
 	}

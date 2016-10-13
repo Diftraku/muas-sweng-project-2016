@@ -17,7 +17,9 @@ import javafx.scene.layout.*;
 
 import javafx.stage.StageStyle;
 
-
+/*
+ * Main class for starting the javafx application
+ */
 public class Main extends Application {
 	private Control control;
 	private DoubleProperty value = new SimpleDoubleProperty();
@@ -29,7 +31,10 @@ public class Main extends Application {
 		      { "1", "2", "3", "-", "tan" },
 		      { "0", "c", "=", "+", "Pii" }
 		};
-
+/*
+ * (non-Javadoc)
+ * @see javafx.application.Application#start(javafx.stage.Stage)
+ */
 	@Override
 	public void start(Stage stage) {
 		control = new Control();
@@ -42,7 +47,12 @@ public class Main extends Application {
 	    stage.setScene(new Scene(createLayout(screen, buttons)));
 	    stage.show();
 	}
-
+/*
+ * Creates the calculator layout
+ * @param screen the textfield where the numbers go
+ * @param buttons Buttons TilePane where all the buttons are
+ * @return Vbox which has the screen and buttons in it
+ */
 	private VBox createLayout(TextField screen, TilePane buttons) {
 	    final VBox layout = new VBox(20);
 	    layout.setAlignment(Pos.CENTER);
@@ -51,6 +61,10 @@ public class Main extends Application {
 	    screen.prefWidthProperty().bind(buttons.widthProperty());
 	    return layout;
 	}
+	/*
+	 * Creates the screen
+	 * @return TextField Textfield is the screen where numbers go
+	 */
 	private TextField createScreen() {
 	    screen = new TextField();
 	    screen.setStyle("-fx-background-color: aquamarine;");
@@ -58,6 +72,10 @@ public class Main extends Application {
 	    screen.setEditable(false);
 	    return screen;
 	}
+	/*
+	 * Creates all the buttons from the template
+	 * @return TilePane Pane which has all the buttons in it
+	 */
 	private TilePane createButtons() {
 	    TilePane buttons = new TilePane();
 	    buttons.setVgap(7);
@@ -70,6 +88,10 @@ public class Main extends Application {
 	    }
 	    return buttons;
 	}
+	/*
+	 * @param s Is the name of the button which comes from the template
+	 * @return Button returns JavaFX Button object
+	 */
 	private Button createButton(String s) {
 	    Button button = new Button(s);
 	    button.setStyle("-fx-base: beige;");
@@ -77,8 +99,12 @@ public class Main extends Application {
 	    button.setOnAction(myHandler);
 	    return button;
 	}
-	final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
 
+	final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
+		/*
+		 * (non-Javadoc)
+		 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+		 */
         @Override
         public void handle(final ActionEvent e) {
         	Button button = (Button)e.getSource();
@@ -115,7 +141,9 @@ public class Main extends Application {
         	}
         }
 	};
-
+/*
+ * Main function
+ */
 	public static void main(String[] args) {
 		launch(args);
 	}
