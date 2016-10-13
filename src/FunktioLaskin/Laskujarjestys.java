@@ -2,7 +2,7 @@ package FunktioLaskin;
 
 import java.util.ArrayList;
 
-public class Laskujärjestys {
+public class Laskujarjestys {
 	private Laskin laskin;
 	ArrayList<Double> arvot;
 	ArrayList<String> merkit;
@@ -10,7 +10,7 @@ public class Laskujärjestys {
 	private int eka = 0;
 	private double tulos = 0;
 
-	public Laskujärjestys(){
+	public Laskujarjestys(){
 		laskin = new Laskin();
 		arvot = new ArrayList<Double>();
 		merkit = new ArrayList<String>();
@@ -74,7 +74,7 @@ public class Laskujärjestys {
 		this.arvot = Arvot;
 	}
 
-	public double getVäliTulos(){
+	public double getValiTulos(){
 		return tulos;
 	}
 	public void nollaa(){
