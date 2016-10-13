@@ -6,11 +6,11 @@ public class Control {
 
 	private Laskin laskin;
 	private Main main;
-	private Laskujärjestys laske;
+	private Laskujarjestys laske;
 	ArrayList<Double> arvot;
 	ArrayList<String> merkit;
 	ArrayList<String> emerkit;
-	private String edellinen = "tyhjä";
+	private String edellinen = "tyhja";
 	private int miinus = 0;
 	private String luku;
 	private double luku1 = 0;
@@ -19,7 +19,7 @@ public class Control {
 	public Control(){
 		laskin = new Laskin();
 		main = new Main();
-		laske = new Laskujärjestys();
+		laske = new Laskujarjestys();
 		arvot = new ArrayList<Double>();
 		merkit = new ArrayList<String>();
 		emerkit = new ArrayList<String>();
@@ -27,7 +27,7 @@ public class Control {
 
 	public void nollaa(){
 		laskin.nollaa();
-		edellinen = "tyhjä";
+		edellinen = "tyhja";
 		laske.nollaa();
 		arvot.clear();
 		merkit.clear();
@@ -38,7 +38,7 @@ public class Control {
 		laske.setArvottList(arvot);
 		laske.setMerkitList(merkit);
 		laske.laske();
-		Tulos = laske.getVäliTulos();
+		Tulos = laske.getValiTulos();
 	}
 	public void laske2(){
 		for (int i = 0; i < emerkit.size(); i++){
@@ -49,7 +49,7 @@ public class Control {
 	}
 
 	public void setLuku(String value){
-		if (edellinen == "tyhjä"){
+		if (edellinen == "tyhja"){
 			luku = value;
 		}
 		else if (edellinen == "merkki"){
