@@ -11,6 +11,7 @@ public class Laskin {
      */
     public void nollaa() {
         tulos = 0;
+        edellinen = 0;
     }
     /*
      * Returns the result

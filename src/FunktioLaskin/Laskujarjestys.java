@@ -96,7 +96,8 @@ public class Laskujarjestys {
 	public void nollaa(){
 		eka = 0;
 		tulos = 0;
-		arvot.clear();
-		merkit.clear();
+		arvot.removeAll(arvot);
+		merkit.removeAll(merkit);
+		emerkit.clear();
 	}
 }

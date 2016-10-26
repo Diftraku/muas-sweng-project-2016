@@ -43,6 +43,7 @@ public class Control {
 		Tulos = 0;
 		miinus = 0;
 		luku1 = 0;
+		luku = null;
 	}
 	/*
 	 * Counts the calculation in the right order
