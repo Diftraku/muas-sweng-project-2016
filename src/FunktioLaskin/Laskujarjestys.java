@@ -80,7 +80,7 @@ public class Laskujarjestys {
 	/*
 	 * Set the numbers list for this class
 	 */
-	public void setArvottList(ArrayList<Double> Arvot){
+	public void setArvotList(ArrayList<Double> Arvot){
 		this.arvot = Arvot;
 	}
 	/*

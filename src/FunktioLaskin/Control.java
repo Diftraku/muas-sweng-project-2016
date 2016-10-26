@@ -18,6 +18,7 @@ public class Control {
 	private String luku;
 	private double luku1 = 0;
 	private double Tulos;
+	private double vanha;
 /*
  * Constructor
  */
@@ -33,18 +34,21 @@ public class Control {
 	 * clears the calculator
 	 */
 	public void nollaa(){
+		//vanha = Tulos;
 		laskin.nollaa();
 		edellinen = "tyhja";
 		laske.nollaa();
 		arvot.clear();
 		merkit.clear();
 		Tulos = 0;
+		miinus = 0;
+		luku1 = 0;
 	}
 	/*
 	 * Counts the calculation in the right order
 	 */
 	public void laske(){
-		laske.setArvottList(arvot);
+		laske.setArvotList(arvot);
 		laske.setMerkitList(merkit);
 		laske.laske();
 		Tulos = laske.getValiTulos();
@@ -94,6 +98,11 @@ public class Control {
 	 * Sets operation in the operation array
 	 */
 	public void setMerkki(String merkki){
+		if (edellinen == "tyhja"){
+			arvot.add(vanha);
+			edellinen = "numero";
+
+		}
 		if (edellinen == "numero"){
 			if (merkki == "="){
 				setArvo(luku);
