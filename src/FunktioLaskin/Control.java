@@ -49,8 +49,7 @@ public class Control {
 	public void laske(){
 		laske.setArvotList(arvot);
 		laske.setMerkitList(merkit);
-		laske.laske();
-		Tulos = laske.getValiTulos();
+		Tulos = laske.laske();
 	}
 
 	/*

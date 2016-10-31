@@ -20,7 +20,7 @@ public class Laskujarjestys {
 	/*
 	 *Calculates the counting order
 	 */
-	public void laske(){
+	public double laske(){
 		for (int i = 0; i < merkit.size(); i++){
 			if (merkit.get(i) == "N"){
 				laskin.neliojuuri((double) arvot.get(i));
@@ -88,11 +88,13 @@ public class Laskujarjestys {
 			}
 		}
 		//Asetetaan tulos kontrollerille
-		tulos = laskin.annaTulos();
+		nollaa();
+		return laskin.annaTulos();
 	}
 	/*
 	 * Sets the operations list for this class
 	 */
+
 	public void setMerkitList(ArrayList<String> Merkit){
 		this.merkit = Merkit;
 	}
