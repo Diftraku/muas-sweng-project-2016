@@ -12,7 +12,6 @@ public class Control {
 	private Laskujarjestys laske;
 	ArrayList<Double> arvot;
 	ArrayList<String> merkit;
-	ArrayList<String> emerkit;
 	private String edellinen = "tyhja";
 	private int miinus = 0;
 	private String luku;
@@ -28,7 +27,6 @@ public class Control {
 		laske = new Laskujarjestys();
 		arvot = new ArrayList<Double>();
 		merkit = new ArrayList<String>();
-		emerkit = new ArrayList<String>();
 	}
 	/*
 	 * clears the calculator
@@ -54,30 +52,31 @@ public class Control {
 		laske.laske();
 		Tulos = laske.getValiTulos();
 	}
-	/*
-	 * Counts the square root
-	 */
-	public void laske2(){
-		for (int i = 0; i < emerkit.size(); i++){
-			if (emerkit.get(i) == "N"){
-				laskin.neliojuuri(arvot.get(i));
-			}
-		}
-	}
+
 	/*
 	 * Sets last number so it can be used in the next calculation
 	 */
 	public void setLuku(String value){
 		if (edellinen == "tyhja"){
 			luku = value;
+			edellinen = "numero";
 		}
 		else if (edellinen == "merkki"){
 			luku = value;
+			edellinen = "numero";
 		}
-		else{
+		else if (edellinen == "numero"){
 			luku+=value;
+			edellinen = "numero";
 		}
-		edellinen = "numero";
+		else if (edellinen == "emerkki"){
+			luku = value;
+			edellinen = "enumero";
+		}
+		else if (edellinen == "enumero"){
+			luku+=value;
+			edellinen = "enumero";
+		}
 	}
 	/*
 	 * Sets a number in the number array
@@ -95,16 +94,21 @@ public class Control {
 				arvot.add(0-luku1);
 			}
 		}
+
 	/*
 	 * Sets operation in the operation array
 	 */
+	public void setEmerkki(String merkki){
+			merkit.add(merkki);
+			edellinen = "enumero";
+	}
 	public void setMerkki(String merkki){
 		if (edellinen == "tyhja"){
 			arvot.add(vanha);
 			edellinen = "numero";
 
 		}
-		if (edellinen == "numero"){
+		if (edellinen == "numero" || edellinen == "enumero"){
 			if (merkki == "="){
 				setArvo(luku);
 				edellinen = "merkki";
@@ -117,7 +121,6 @@ public class Control {
 				miinus = 0;
 			}
 		}
-
 		else{
 			if (merkki == "-"){
 				miinus = 1;
@@ -137,8 +140,16 @@ public class Control {
 		}
 	}
 
-	public void setEmerkki(String string){
-		emerkit.add(string);
+	/*
+	 * Sets Pii to arvot()
+	 */
+	public void setPii(){
+		if (miinus == 0){
+			arvot.add(Math.PI);
+		}
+		if (miinus == 1){
+			arvot.add(0-Math.PI);
+		}
 	}
 	/*
 	 * returns the result

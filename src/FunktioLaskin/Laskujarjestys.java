@@ -6,7 +6,6 @@ public class Laskujarjestys {
 	private Laskin laskin;
 	ArrayList<Double> arvot;
 	ArrayList<String> merkit;
-	ArrayList<String> emerkit;
 	private int eka = 0;
 	private double tulos = 0;
 	/*
@@ -16,14 +15,34 @@ public class Laskujarjestys {
 		laskin = new Laskin();
 		arvot = new ArrayList<Double>();
 		merkit = new ArrayList<String>();
-		emerkit = new ArrayList<String>();
 
 	}
 	/*
 	 *Calculates the counting order
 	 */
 	public void laske(){
-
+		for (int i = 0; i < merkit.size(); i++){
+			if (merkit.get(i) == "N"){
+				laskin.neliojuuri((double) arvot.get(i));
+				arvot.set(i, laskin.annaTulos());
+				eka = 1;
+			}
+			else if (merkit.get(i) == "cos"){
+				laskin.cos((double) arvot.get(i));
+				arvot.set(i, laskin.annaTulos());
+				eka = 1;
+			}
+			else if (merkit.get(i) == "sin"){
+				laskin.sin((double) arvot.get(i));
+				arvot.set(i, laskin.annaTulos());
+				eka = 1;
+			}
+			else if (merkit.get(i) == "sin"){
+				laskin.tan((double) arvot.get(i));
+				arvot.set(i, laskin.annaTulos());
+				eka = 1;
+			}
+		}
 		for (int i = 0; i < merkit.size(); i++){
 			if (merkit.get(i) == "^"){
 				if (eka == 0){
@@ -33,7 +52,7 @@ public class Laskujarjestys {
 				}
 				laskin.potenssi((double) arvot.get(i));
 			}
-			if (merkit.get(i) == "*"){
+			else if (merkit.get(i) == "*"){
 				if (eka == 0){
 					laskin.lisaa((double) arvot.get(i));
 					arvot.remove(i);
@@ -96,8 +115,7 @@ public class Laskujarjestys {
 	public void nollaa(){
 		eka = 0;
 		tulos = 0;
-		arvot.removeAll(arvot);
-		merkit.removeAll(merkit);
-		emerkit.clear();
+		arvot.clear();
+		merkit.clear();
 	}
 }

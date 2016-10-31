@@ -117,6 +117,12 @@ public class Main extends Application {
         		if (value == "/" || value == "*" || value == "+" || value == "-" || value == "^") {
         			control.setMerkki(value);
         		}
+        		else if (value == "N" || value == "sin" || value == "tan" || value == "cos") {
+        			control.setEmerkki(value);
+        		}
+        		else if (value == "Pii"){
+        			control.setPii();
+        		}
         		else if (value == "="){
         			control.setMerkki(value);
         			control.laske();
