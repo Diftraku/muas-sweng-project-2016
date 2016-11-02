@@ -62,11 +62,13 @@ public class Listat {
 			if (miinus == 0){
 				arvot.add(luku1);
 			}
-			if (miinus == 1){
+			else if (miinus == 1){
 				arvot.add(0-luku1);
 			}
 		}
-
+	public void addArvo(Double arvo){
+		arvot.add(arvo);
+	}
 	/*
 	 * Sets operation in the operation array
 	 */
@@ -79,10 +81,10 @@ public class Listat {
 			edellinen = "numero";
 
 		}
-		if (edellinen == "numero" || edellinen == "enumero"){
+		else if (edellinen == "numero" || edellinen == "enumero"){
 			if (merkki == "="){
 				setArvo(luku);
-				edellinen = "merkki";
+				edellinen = "numero";
 				miinus = 0;
 			}
 			else{

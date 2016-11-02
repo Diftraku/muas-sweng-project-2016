@@ -11,8 +11,13 @@ public class Control {
 	private Main main;
 	private Laskujarjestys laske;
 	private Listat lista;
+	private Listat lista1;
+	private Listat lista2;
+	private Listat lista3;
 	private double Tulos;
 	private double vanha;
+	private int sulut = 0;
+	private double Valitulos;
 /*
  * Constructor
  */
@@ -21,6 +26,9 @@ public class Control {
 		main = new Main();
 		laske = new Laskujarjestys();
 		lista = new Listat();
+		lista1 = new Listat();
+		lista2 = new Listat();
+		lista3 = new Listat();
 	}
 	/*
 	 * clears the calculator
@@ -31,6 +39,11 @@ public class Control {
 		laske.nollaa();
 		Tulos = 0;
 		lista.nollaa();
+		lista1.nollaa();
+		lista2.nollaa();
+		lista3.nollaa();
+		sulut = 0;
+		Valitulos = 0.0;
 		//edellinen = "tyhja";
 		//arvot.clear();
 		//merkit.clear();
@@ -41,31 +54,115 @@ public class Control {
 	/*
 	 * Counts the calculation in the right order
 	 */
-	public void laske(){
+	public void laskelopputulos(){
 		laske.setArvotList(lista.getArvotList());
 		laske.setMerkitList(lista.getMerkitList());
 		Tulos = laske.laske();
 	}
+
 	public void setMerkki(String value){
-		lista.setMerkki(value);
+		System.out.println(sulut);
+		if (sulut == 0){
+			lista.setMerkki(value);
+		}
+		else if (sulut == 1){
+			lista1.setMerkki(value);
+		}
+		else if (sulut == 2){
+			lista2.setMerkki(value);
+		}
+		else if (sulut == 3){
+			lista3.setMerkki(value);
+		}
 	}
 	public void setLuku(String value){
-		lista.setLuku(value);
+		System.out.println(sulut);
+		if (sulut == 0){
+			lista.setLuku(value);
+		}
+		else if (sulut == 1){
+			lista1.setLuku(value);
+		}
+		else if (sulut == 2){
+			lista2.setLuku(value);
+		}
+		else if (sulut == 3){
+			lista3.setLuku(value);
+		}
 	}
 	public void setEmerkki(String value){
-		lista.setEmerkki(value);
+		System.out.println(sulut);
+		if (sulut == 0){
+			lista.setEmerkki(value);
+		}
+		else if (sulut == 1){
+			lista1.setEmerkki(value);
+		}
+		else if (sulut == 2){
+			lista2.setEmerkki(value);
+		}
+		else if (sulut == 3){
+			lista3.setEmerkki(value);
+		}
 	}
 	/*
 	 * Check if there are brackets (In progress)
 	 */
 	public void sulut(String sulku){
 		if (sulku == "("){
+			sulut++;
+		}
+		else if (sulku == ")"){
+			if (sulut == 1){
+				lista1.setMerkki("=");
+				laske.setArvotList(lista1.getArvotList());
+				laske.setMerkitList(lista1.getMerkitList());
+				Valitulos = laske.laske();
+				lista.addArvo(Valitulos);
+				Valitulos = 0;
+				lista1.nollaa();
+				laske.nollaa();
+				laskin.nollaa();
 
+			}
+			else if (sulut == 2){
+				lista2.setMerkki("=");
+				laske.setArvotList(lista2.getArvotList());
+				laske.setMerkitList(lista2.getMerkitList());
+				lista1.addArvo(laske.laske());
+				lista2.nollaa();
+				laske.nollaa();
+				laskin.nollaa();
+			}
+			else if (sulut == 3){
+				lista3.setMerkki("=");
+				laske.setArvotList(lista3.getArvotList());
+				laske.setMerkitList(lista3.getMerkitList());
+				lista2.setLuku(Double.toString(laske.laske()));
+				lista3.nollaa();
+				laske.nollaa();
+				laskin.nollaa();
+			}
+			else{
+				 System.out.println("Shit happens");
+			}
+			sulut--;
 		}
 	}
 
 	public void setPii(){
-		lista.setPii();
+		if (sulut == 0){
+			lista.setPii();
+		}
+		else if (sulut == 1){
+			lista1.setPii();
+		}
+		else if (sulut == 2){
+			lista2.setPii();
+		}
+		else if (sulut == 3){
+			lista3.setPii();
+		}
 	}
 	/*
 	 * returns the result

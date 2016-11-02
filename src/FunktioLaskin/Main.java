@@ -125,7 +125,7 @@ public class Main extends Application {
         		}
         		else if (value == "="){
         			control.setMerkki(value);
-        			control.laske();
+        			control.laskelopputulos();
         			screen.setText(Double.toString(control.getTulos()));
         			//control.nollaa();
         		}

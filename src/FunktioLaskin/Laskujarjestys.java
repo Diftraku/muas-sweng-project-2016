@@ -7,7 +7,8 @@ public class Laskujarjestys {
 	ArrayList<Double> arvot;
 	ArrayList<String> merkit;
 	private int eka = 0;
-	private double tulos = 0;
+	//private double tulos = 0;
+	//private String valitulos;
 	/*
 	 * Constructor
 	 */
@@ -88,7 +89,7 @@ public class Laskujarjestys {
 			}
 		}
 		//Asetetaan tulos kontrollerille
-		nollaa();
+		System.out.println(laskin.annaTulos());
 		return laskin.annaTulos();
 	}
 	/*
@@ -108,15 +109,18 @@ public class Laskujarjestys {
 	 * Gets the intermediate result
 	 * @return double intermediate result
 	 */
-	public double getValiTulos(){
-		return tulos;
-	}
+	/*public String getValiTulos(){
+		valitulos = Double.toString(tulos);
+		tulos = 0;
+		return valitulos;
+	}*/
 	/*
 	 * Clears the operation and number lists and result
 	 */
 	public void nollaa(){
 		eka = 0;
-		tulos = 0;
+		//tulos = 0;
+		//valitulos = null;
 		arvot.clear();
 		merkit.clear();
 	}
