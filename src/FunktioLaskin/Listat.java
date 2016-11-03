@@ -94,6 +94,11 @@ public class Listat {
 				miinus = 0;
 			}
 		}
+		else if (edellinen == "sulut"){
+				merkit.add(merkki);
+				edellinen = "merkki";
+				miinus = 0;
+		}
 		else{
 			if (merkki == "-"){
 				miinus = 1;
@@ -140,6 +145,10 @@ public class Listat {
 			if (miinus == 1){
 				arvot.add(0-Math.PI);
 			}
+		}
+
+		public void setEdellinenSulut(){
+			edellinen = "sulut";
 		}
 
 	}

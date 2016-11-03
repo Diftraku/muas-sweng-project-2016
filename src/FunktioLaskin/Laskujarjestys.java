@@ -21,7 +21,11 @@ public class Laskujarjestys {
 	/*
 	 *Calculates the counting order
 	 */
-	public double laske(){
+	public double laske(ArrayList<Double> arvotList, ArrayList<String> merkitList){
+		laskin.nollaa();
+		System.out.println(laskin.annaTulos()+ "laske");
+		setArvotList(arvotList);
+		setMerkitList(merkitList);
 		for (int i = 0; i < merkit.size(); i++){
 			if (merkit.get(i) == "N"){
 				laskin.neliojuuri((double) arvot.get(i));
@@ -73,10 +77,16 @@ public class Laskujarjestys {
 		for (int i = 0; i < merkit.size(); i++){
 			if (merkit.get(i) == "+"){
 				if (eka == 0){
+					System.out.println(arvot);
+					System.out.println(merkit);
 					laskin.lisaa((double) arvot.get(i));
 					arvot.remove(i);
+					System.out.println(arvot);
 					eka = 1;
 				}
+
+				System.out.println(arvot);
+				System.out.println(merkit);
 				laskin.lisaa((double) arvot.get(i));
 			}
 			else if (merkit.get(i) == "-"){
@@ -89,7 +99,7 @@ public class Laskujarjestys {
 			}
 		}
 		//Asetetaan tulos kontrollerille
-		System.out.println(laskin.annaTulos());
+		//System.out.println(laskin.annaTulos()+ "k?");
 		return laskin.annaTulos();
 	}
 	/*
@@ -123,5 +133,10 @@ public class Laskujarjestys {
 		//valitulos = null;
 		arvot.clear();
 		merkit.clear();
+
 	}
+	public void setEka(int i){
+		eka = i;
+	}
+
 }

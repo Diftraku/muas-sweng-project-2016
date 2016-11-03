@@ -4,14 +4,15 @@ package FunktioLaskin;
 public class Laskin {
 
     private double tulos=0;  // Muuttuja tulokselle
-    private double edellinen=0;
+    //private double edellinen=0;
 
     /*
      * Clears the result
      */
     public void nollaa() {
         tulos = 0;
-        edellinen = 0;
+        //edellinen = 0;
+        System.out.println(tulos+" nollattu?");
     }
     /*
      * Returns the result
@@ -25,7 +26,8 @@ public class Laskin {
      * @param n Is the number to be added
      */
     public void lisaa(double n) {
-    	edellinen = tulos;
+    	//edellinen = tulos;
+        System.out.println(tulos+ " + "+n);
         tulos = tulos + n;
     }
     /*
@@ -33,7 +35,8 @@ public class Laskin {
      * @param n Number to be subtracted
      */
     public void vahenna(double n) {
-    	edellinen = tulos;
+    	System.out.println(tulos+" vahennys");
+    	//edellinen = tulos;
         tulos = tulos - n;
     }
     /*
@@ -41,7 +44,10 @@ public class Laskin {
      * @param n Number to be multiplied
      */
     public void kerro(double n) {
-    	edellinen = tulos;
+    	System.out.println(tulos+" kerto?");
+    	//edellinen = tulos;
+
+        System.out.println(tulos+ " * "+n);
         tulos = tulos * n;
     }
     /*
@@ -50,7 +56,8 @@ public class Laskin {
      * @throws ArithmeticException
      */
     public void jaa(double n) throws ArithmeticException {
-    	edellinen = tulos;
+    	System.out.println(tulos+" jaa?");
+    	//edellinen = tulos;
         tulos = tulos / n;
     }
     /*
@@ -58,7 +65,8 @@ public class Laskin {
      * @param n Number to be squared
      */
     public void nelio(double n) {
-    	edellinen = tulos;
+    	System.out.println(tulos+" nelio?");
+    	//edellinen = tulos;
         tulos = n * n;
     }
 
@@ -68,7 +76,8 @@ public class Laskin {
      * @throws ArithemticException
      */
     public void neliojuuri(double n) throws ArithmeticException {
-    	edellinen = tulos;
+    	System.out.println(tulos+" neliojuuri?");
+    	//edellinen = tulos;
     	if (n < 0){
     		tulos = 0;
     	}else{
@@ -80,6 +89,7 @@ public class Laskin {
      * @param n Latest result or number put to power of n
      */
     public void potenssi(double n){
+    	System.out.println(tulos+" potenssi?");
     	//n potensiin y
     	tulos = Math.pow(tulos,n);
 	}
@@ -88,6 +98,7 @@ public class Laskin {
      * @param n Tangent from n
      */
     public void tan(double n) {
+    	System.out.println(tulos+" tan?");
         double radiaani = Math.toRadians(n);
         tulos = Math.tan(radiaani);
     }
@@ -96,6 +107,7 @@ public class Laskin {
      * @param n Sin from number m
      */
     public void sin(double n) {
+    	System.out.println(tulos+" sin?");
         double radiaani = Math.toRadians(n);
         tulos = Math.sin(radiaani);
     }
@@ -105,6 +117,7 @@ public class Laskin {
      * @param n Cos from n
      */
     public void cos(double n) {
+    	System.out.println(tulos+" cos?");
         double radiaani = Math.toRadians(n);
         tulos = Math.cos(radiaani);
     }
@@ -113,6 +126,7 @@ public class Laskin {
      * @param n Arctangent from n
      */
     public void arctan(double n) {
+    	System.out.println(tulos+" arctan?");
         tulos = Math.toDegrees(Math.atan(n));
     }
     /*
@@ -120,6 +134,7 @@ public class Laskin {
      * @param n Arcsin from n
      */
     public void arcsin(double n) {
+    	System.out.println(tulos+" arcsin?");
     	if (n > 0 && n < 1){
     		tulos = Math.toDegrees(Math.asin(n));
     	}
@@ -132,6 +147,7 @@ public class Laskin {
      * @param n Arccos from n
      */
     public void arccos(double n) {
+    	System.out.println(tulos+" arccos?");
     	if (n > 0 && n < 1){
         tulos = Math.toDegrees(Math.acos(n));
     	}
@@ -142,13 +158,14 @@ public class Laskin {
     /*
      * Last result
      */
-    public void edellinen(){
-    	tulos = edellinen;
-    }
+    //public void edellinen(){
+    //	tulos = edellinen;
+    //}
     /*
      * Starts the calculator
      */
     public void virtaON() {
+
         // Tähän voi laittaa alkutoimet
         tulos = 0;
         System.out.println("Laskin: virtaON())");
