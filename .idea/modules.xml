@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FunktioLaskin.iml" filepath="$PROJECT_DIR$/.idea/modules/FunktioLaskin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FunktioLaskin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/FunktioLaskin_main.iml" group="FunktioLaskin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FunktioLaskin_package.iml" filepath="$PROJECT_DIR$/.idea/modules/FunktioLaskin_package.iml" group="FunktioLaskin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FunktioLaskin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/FunktioLaskin_test.iml" group="FunktioLaskin" />
     </modules>
   </component>
 </project>

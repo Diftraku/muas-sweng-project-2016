@@ -18,5 +18,10 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="FunktioLaskin_main" target="1.7" />
+      <module name="FunktioLaskin_package" target="1.7" />
+      <module name="FunktioLaskin_test" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

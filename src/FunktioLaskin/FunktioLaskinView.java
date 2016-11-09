@@ -25,6 +25,9 @@ import java.util.Objects;
 public class FunktioLaskinView extends VBox {
     public TextField screen;
     public TilePane buttons;
+    private FormulaDAO dao = new ConcreteFormulaDAO();
+    private Formula formula = null;
+
     private static final String[][] template = {
             {"^", "N", ".", "(", ")"},
             {"7", "8", "9", "/", "sin"},
@@ -52,7 +55,9 @@ public class FunktioLaskinView extends VBox {
                 } else if (Objects.equals(value, "N") || Objects.equals(value, "sin") || Objects.equals(value, "tan") || Objects.equals(value, "cos")) {
                     control.setEmerkki(value);
                 } else if (Objects.equals(value, "Pii")) {
-                    control.setPii();
+                    //control.setPii();
+                    formula = dao.findFormula();
+                    screen.setText(formula.getFormula());
                 } else if (Objects.equals(value, "=")) {
                     control.setMerkki(value);
                     control.laskelopputulos();
