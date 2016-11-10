@@ -56,7 +56,7 @@ public class FunktioLaskinView extends VBox {
                     control.setEmerkki(value);
                 } else if (Objects.equals(value, "Pii")) {
                     //control.setPii();
-                    formula = dao.findFormula();
+                    formula = dao.findFormula(1);
                     screen.setText(formula.getFormula());
                 } else if (Objects.equals(value, "=")) {
                     control.setMerkki(value);

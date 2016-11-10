@@ -8,23 +8,24 @@ import java.sql.*;
 public class ConcreteFormulaDAO implements FormulaDAO {
 
     private Formula formula;
+    private Connection conn;
 
     public ConcreteFormulaDAO() {
         formula = new Formula();
     }
 
-    private Connection conn;
     @Override
-    public Formula findFormula() {
-        String sql = "SELECT * FROM formulas WHERE id=1";
+    public Formula findFormula(int index) {
+        String sql = new String("SELECT * FROM formulas WHERE id="+index);
         try {
             conn = connectDatabase();
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(sql);
 
             String resultStr = result.getString("formula");
+            int id = result.getInt("id");
             formula.setFormula(resultStr);
-            System.out.println(resultStr);
+            formula.setId(id);
             return formula;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,7 +43,6 @@ public class ConcreteFormulaDAO implements FormulaDAO {
         try {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:test.db");
-            System.out.println("Connection established");
             return conn;
         } catch (SQLException e) {
             e.printStackTrace();
