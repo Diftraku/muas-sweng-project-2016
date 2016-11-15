@@ -14,6 +14,7 @@ addons:
     build_command_prepend: "./gradlew clean"
     build_command:   "./gradlew build"
     branch_pattern: coverity_scan
+    notification_email: toni.kaija@metropolia.fi
 
 language: java
 
