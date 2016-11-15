@@ -1,5 +1,8 @@
 package FunktioLaskin;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /*
  * Controller class
  */
@@ -9,6 +12,16 @@ public class Control {
     private Laskin laskin;
     private Main main;
     private Laskujarjestys laske;
+    ArrayList<String> listat;
+    private String lasku = "";
+    private int size;
+    private int place = 0;
+    private LuoLista luolista;
+    private char aChar;
+    private int i = 0;
+    private String Valitulos;
+    private CharSequence charplace = "x";
+
     private LuoLista lista;
     private LuoLista lista1;
     private LuoLista lista2;
@@ -16,7 +29,7 @@ public class Control {
     private double Tulos;
     //private double vanha;
     private int sulut = 0;
-    private double Valitulos;
+
 
     /*
      * Constructor
@@ -25,6 +38,9 @@ public class Control {
         laskin = new Laskin();
         main = new Main();
         laske = new Laskujarjestys();
+        listat = new ArrayList<String>();
+        luolista = new LuoLista();
+
         lista = new LuoLista();
         lista1 = new LuoLista();
         lista2 = new LuoLista();
@@ -48,7 +64,7 @@ public class Control {
         lista2.nollaa();
         lista3.nollaa();
         sulut = 0;
-        Valitulos = 0.0;
+        Valitulos = null;
         //edellinen = "tyhja";
         //arvot.clear();
         //merkit.clear();
@@ -61,119 +77,66 @@ public class Control {
      * Counts the calculation in the right order
      */
     public void laskelopputulos() {
+    	System.out.println("control" +listat);
+    	for (int i = (listat.size()-1); i >= 0; i--){
+    		if (i!= 0){
+
+    			luolista.luolista(listat.get(i));
+    			System.out.println("laskee tuloksen" + luolista.getArvotList() + ", " + luolista.getMerkitList());
+    			Tulos = laske.laske(luolista.getArvotList(), luolista.getMerkitList());
+    			aChar = ((CharSequence) lasku).charAt(i);
+    			while (aChar == 'x'){
+    				aChar = ((CharSequence) lasku).charAt(i);
+    				i++;
+    				}
+    		Valitulos = Double.toString(Tulos);
+    		lasku.replace(charplace, Valitulos);
+    		listat.set((i-1), lasku);
+    		}
+    		else if ( i == 0){
+    			luolista.luolista(listat.get(i));
+        		System.out.println("laskee tuloksen" + luolista.getArvotList() + ", " + luolista.getMerkitList());
+                Tulos = laske.laske(luolista.getArvotList(), luolista.getMerkitList());
+    		}
+    	}
+    	//System.out.println("laskee lopputuloksen" + lista.getArvotList() + ", " + lista.getMerkitList());
+        //Tulos = laske.laske(lista.getArvotList(), lista.getMerkitList());
+
+    		//listat.set(, Valitulos)
+    	}
         /*laske.setArvotList(lista.getArvotList());
 		laske.setMerkitList(lista.getMerkitList());*/
-        System.out.println("laskee lopputuloksen" + lista.getArvotList() + ", " + lista.getMerkitList());
-        Tulos = laske.laske(lista.getArvotList(), lista.getMerkitList());
+        //System.out.println("laskee lopputuloksen" + lista.getArvotList() + ", " + lista.getMerkitList());
+        //Tulos = laske.laske(lista.getArvotList(), lista.getMerkitList());
+
+    //Uusi koodi
+    public void setValue(String value) {
+        lasku += value;
     }
 
-    public void setMerkki(String value) {
-        System.out.println(sulut);
-        if (sulut == 0) {
-            lista.setMerkki(value);
-        } else if (sulut == 1) {
-            lista1.setMerkki(value);
-        } else if (sulut == 2) {
-            lista2.setMerkki(value);
-        } else if (sulut == 3) {
-            lista3.setMerkki(value);
-        }
-    }
-
-    public void setLuku(String value) {
-        System.out.println(sulut);
-        if (sulut == 0) {
-            lista.setLuku(value);
-        } else if (sulut == 1) {
-            lista1.setLuku(value);
-        } else if (sulut == 2) {
-            lista2.setLuku(value);
-        } else if (sulut == 3) {
-            lista3.setLuku(value);
-        }
-    }
-
-    public void setEmerkki(String value) {
-        System.out.println(sulut);
-        if (sulut == 0) {
-            lista.setEmerkki(value);
-        } else if (sulut == 1) {
-            lista1.setEmerkki(value);
-        } else if (sulut == 2) {
-            lista2.setEmerkki(value);
-        } else if (sulut == 3) {
-            lista3.setEmerkki(value);
-        }
-    }
-
-    /*
-     * Check if there are brackets (In progress)
-     */
     public void sulut(String sulku) {
-        if (sulku == "(") {
-            sulut++;
-        } else if (sulku == ")") {
-            if (sulut == 1) {
-                lista1.setMerkki("=");
-                laske.setEka(0);
-				/*laske.setArvotList(lista1.getArvotList());
-				laske.setMerkitList(lista1.getMerkitList());*/
-                Valitulos = laske.laske(lista1.getArvotList(), lista1.getMerkitList());
-                lista.addArvo(Valitulos);
-                System.out.println(Valitulos);
-                System.out.println(lista.getArvotList());
-                Valitulos = 0;
-                lista1.nollaa();
-                laske.nollaa();
-                laskin.nollaa();
-                laske.setEka(0);
-                lista.setEdellinenSulut();
-
-            } else if (sulut == 2) {
-                lista2.setMerkki("=");
-                laske.setEka(0);
-                //laske.setArvotList(lista2.getArvotList());
-                //laske.setMerkitList(lista2.getMerkitList());
-                //lista1.addArvo(laske.laske());
-                Valitulos = laske.laske(lista2.getArvotList(), lista2.getMerkitList());
-                lista1.addArvo(Valitulos);
-                lista2.nollaa();
-                laske.nollaa();
-                laskin.nollaa();
-                laske.setEka(0);
-                lista1.setEdellinenSulut();
-            } else if (sulut == 3) {
-                lista3.setMerkki("=");
-                laske.setEka(0);
-                //laske.setArvotList(lista3.getArvotList());
-                //laske.setMerkitList(lista3.getMerkitList());
-                //lista2.setLuku(Double.toString(laske.laske()));
-                Valitulos = laske.laske(lista3.getArvotList(), lista3.getMerkitList());
-                lista2.addArvo(Valitulos);
-                lista3.nollaa();
-                laske.nollaa();
-                laskin.nollaa();
-                laske.setEka(0);
-                lista2.setEdellinenSulut();
-            } else {
-                System.out.println("Shit happens");
-            }
-            sulut--;
+        if (Objects.equals(sulku, "(")) {
+        	listat.add(place, lasku);
+        	place++;
+        	lasku = "";
         }
+        else if (Objects.equals(sulku, ")")) {
+        	listat.add(place, lasku);
+        	place--;
+        	lasku = listat.get(place);
+        	lasku += "x";
+        }
+        else if (Objects.equals(sulku, "=")) {
+        	lasku += sulku;
+        	listat.add(place, lasku);
+        }
+
     }
 
 
-    public void setPii() {
-        if (sulut == 0) {
-            lista.setPii();
-        } else if (sulut == 1) {
-            lista1.setPii();
-        } else if (sulut == 2) {
-            lista2.setPii();
-        } else if (sulut == 3) {
-            lista3.setPii();
-        }
-    }
+
+
+
 
     /*
      * returns the result

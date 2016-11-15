@@ -1,6 +1,7 @@
 package FunktioLaskin;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Laskujarjestys {
 	private Laskin laskin;
@@ -22,51 +23,51 @@ public class Laskujarjestys {
 	 *Calculates the counting order
 	 */
 	public double laske(ArrayList<Double> arvotList, ArrayList<String> merkitList){
-		laskin.nollaa();
+		//laskin.nollaa();
 		System.out.println(laskin.annaTulos()+ "laske");
 		setArvotList(arvotList);
 		setMerkitList(merkitList);
 		for (int i = 0; i < merkit.size(); i++){
-			if (merkit.get(i) == "N"){
+			if (Objects.equals(merkit.get(i), "N")){
 				laskin.neliojuuri((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
 			}
-			else if (merkit.get(i) == "cos"){
+			else if (Objects.equals(merkit.get(i), "cos")){
 				laskin.cos((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
 			}
-			else if (merkit.get(i) == "sin"){
+			else if (Objects.equals(merkit.get(i), "sin")){
 				laskin.sin((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
 			}
-			else if (merkit.get(i) == "sin"){
+			else if (Objects.equals(merkit.get(i), "tan")){
 				laskin.tan((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
 			}
 		}
 		for (int i = 0; i < merkit.size(); i++){
-			if (merkit.get(i) == "^"){
-				if (eka == 0){
+			if (Objects.equals(merkit.get(i), "^")){
+				if (Objects.equals(eka, 0)){
 					laskin.lisaa((double) arvot.get(i));
 					arvot.remove(i);
 					eka = 1;
 				}
 				laskin.potenssi((double) arvot.get(i));
 			}
-			else if (merkit.get(i) == "*"){
-				if (eka == 0){
+			else if (Objects.equals(merkit.get(i), "*")){
+				if (Objects.equals(eka, 0)){
 					laskin.lisaa((double) arvot.get(i));
 					arvot.remove(i);
 					eka = 1;
 				}
 				laskin.kerro((double) arvot.get(i));
 			}
-			else if (merkit.get(i) == "/"){
-				if (eka == 0){
+			else if (Objects.equals(merkit.get(i), "/")){
+				if (Objects.equals(eka, 0)){
 					laskin.lisaa((double) arvot.get(i));
 					arvot.remove(i);
 					eka = 1;
@@ -75,8 +76,8 @@ public class Laskujarjestys {
 			}
 		}
 		for (int i = 0; i < merkit.size(); i++){
-			if (merkit.get(i) == "+"){
-				if (eka == 0){
+			if (Objects.equals(merkit.get(i), "+")){
+				if (Objects.equals(eka, 0)){
 					System.out.println(arvot);
 					System.out.println(merkit);
 					laskin.lisaa((double) arvot.get(i));
@@ -89,8 +90,8 @@ public class Laskujarjestys {
 				System.out.println(merkit);
 				laskin.lisaa((double) arvot.get(i));
 			}
-			else if (merkit.get(i) == "-"){
-				if (eka == 0){
+			else if (Objects.equals(merkit.get(i), "-")){
+				if (Objects.equals(eka, 0)){
 					laskin.lisaa((double) arvot.get(i));
 					arvot.remove(i);
 					eka = 1;
@@ -99,7 +100,7 @@ public class Laskujarjestys {
 			}
 		}
 		//Asetetaan tulos kontrollerille
-		//System.out.println(laskin.annaTulos()+ "k?");
+		System.out.println(laskin.annaTulos()+ "k?"+arvot+", "+merkit);
 		return laskin.annaTulos();
 	}
 	/*

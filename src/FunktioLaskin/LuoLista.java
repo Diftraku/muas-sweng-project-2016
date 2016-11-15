@@ -2,15 +2,20 @@ package FunktioLaskin;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LuoLista {
 
 	ArrayList<Double> arvot;
 	ArrayList<String> merkit;
+	private String newString="";
+	private String stringValue;
 	private String edellinen = "tyhja";
 	private int miinus = 0;
 	private String luku;
 	private double luku1 = 0;
+	private String value;
+	private int number = 0;
 	/*
 	 * Sets last number so it can be used in the next calculation
 	 */
@@ -28,6 +33,30 @@ public class LuoLista {
 		luku1 = 0;
 		luku = null;
 	}
+
+	public void luolista(String Value){
+		stringValue = Value;
+		while (!Objects.equals(value, "=")){
+			System.out.println(Value);
+			value = String.valueOf(Value.charAt(number));
+			number++;
+			System.out.println(value);
+			if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")|| Objects.equals(value, "=")) {
+	            setMerkki(String.valueOf(value));
+	            System.out.println("merkki "+value);
+	        } else if (Objects.equals(value, "N") || Objects.equals(value, "sin") || Objects.equals(value, "tan") || Objects.equals(value, "cos")) {
+	            setEmerkki(String.valueOf(value));
+	        } else if (Objects.equals(value, "Pii")) {
+	        	setPii();
+	        } else if (Objects.equals(value, "0") || Objects.equals(value, "1") || Objects.equals(value, "2") || Objects.equals(value, "3") || Objects.equals(value, "4") || Objects.equals(value, "5") || Objects.equals(value, "6") || Objects.equals(value, "7") || Objects.equals(value, "8") || Objects.equals(value, "9") || Objects.equals(value, ".")) {
+	            setLuku(String.valueOf(value));
+	            System.out.println("luku "+value);
+	        }
+		}
+
+	}
+
+
 	public void setLuku(String value){
 		if (edellinen == "tyhja"){
 			luku = value;

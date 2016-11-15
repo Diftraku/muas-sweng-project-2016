@@ -51,20 +51,20 @@ public class FunktioLaskinView extends VBox {
                 control.nollaa();
             } else {
                 if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")) {
-                    control.setMerkki(value);
+                    control.setValue(value);
                 } else if (Objects.equals(value, "N") || Objects.equals(value, "sin") || Objects.equals(value, "tan") || Objects.equals(value, "cos")) {
-                    control.setEmerkki(value);
+                    control.setValue(value);
                 } else if (Objects.equals(value, "Pii")) {
                     //control.setPii();
                     formula = dao.findFormula(1);
                     screen.setText(formula.getFormula());
                 } else if (Objects.equals(value, "=")) {
-                    control.setMerkki(value);
+                    control.sulut(value);
                     control.laskelopputulos();
                     screen.setText(Double.toString(control.getTulos()));
                     //control.nollaa();
                 } else if (Objects.equals(value, "0") || Objects.equals(value, "1") || Objects.equals(value, "2") || Objects.equals(value, "3") || Objects.equals(value, "4") || Objects.equals(value, "5") || Objects.equals(value, "6") || Objects.equals(value, "7") || Objects.equals(value, "8") || Objects.equals(value, "9") || Objects.equals(value, ".")) {
-                    control.setLuku(value);
+                    control.setValue(value);
                 } else if (Objects.equals(value, "(") || Objects.equals(value, ")")) {
                     control.sulut(value);
 
