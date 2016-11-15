@@ -3,7 +3,7 @@ package FunktioLaskin;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Listat {
+public class LuoLista {
 
 	ArrayList<Double> arvot;
 	ArrayList<String> merkit;
@@ -15,7 +15,7 @@ public class Listat {
 	 * Sets last number so it can be used in the next calculation
 	 */
 
-	public Listat(){
+	public LuoLista(){
 
 		arvot = new ArrayList<Double>();
 		merkit = new ArrayList<String>();

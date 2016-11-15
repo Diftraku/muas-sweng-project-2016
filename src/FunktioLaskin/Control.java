@@ -9,10 +9,10 @@ public class Control {
     private Laskin laskin;
     private Main main;
     private Laskujarjestys laske;
-    private Listat lista;
-    private Listat lista1;
-    private Listat lista2;
-    private Listat lista3;
+    private LuoLista lista;
+    private LuoLista lista1;
+    private LuoLista lista2;
+    private LuoLista lista3;
     private double Tulos;
     //private double vanha;
     private int sulut = 0;
@@ -25,10 +25,10 @@ public class Control {
         laskin = new Laskin();
         main = new Main();
         laske = new Laskujarjestys();
-        lista = new Listat();
-        lista1 = new Listat();
-        lista2 = new Listat();
-        lista3 = new Listat();
+        lista = new LuoLista();
+        lista1 = new LuoLista();
+        lista2 = new LuoLista();
+        lista3 = new LuoLista();
     }
 
     public static Control getInstance() {
