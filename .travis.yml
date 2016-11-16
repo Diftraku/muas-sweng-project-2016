@@ -1,3 +1,21 @@
+env:
+  global:
+  # Coverity token
+   - secure: "gUzbC5lQu04BJ5p4vv+LAgGz8ZsFnrzDZrH4cd/VUPBbpOByiP602IfVYDqxmUx9EyP0PuiiwU1omZ5EzSHNFl6GgEx8LRneVW5TsRyvvGfJsH0NNeIrN5eBpjPL98Qforw2LF8lncU7WNQ3kXiY/AKCYJYaJmN6xJWHEWVI8zkaDU8E2337lAUB5YSOARxh/2zDnAyjVXuH+Hve16ABkA3d+TW8cLNNjiGLfZsSds904pE+JAM93/a0y/WxBLOxtVKV3G+JY86NpY9gu/1DPrIWa127B2V8prqjxupwpWh+hiUG0k9jN2/kwK9iBhewps9jFaUqBObsI/Mp8qnnxe+OwWg36dd26ajmg5+cV/DHSJ8ChCU51ayrYZrnkNJwU8KvIZHaykIMm7mrqz7HhH56aha6mZTHi0fFaEPf8smsg2DSvqqgrN3dPSWsLfpgRuymF36chb7X6Sji8jPpwd6E2n1osIrpgozOgtexmEQLcJ4JQdRDhRsXrblahQC9aJBKme+F2ikVQyCcSm6ZvMb3Ul8kwQ7ca9OhRr1IBRXn7Sn5a8nwnlid7AJdQf0mVZb05bgDiFy14UZ0qFpYDyvSWXIrhWBkbiCuDesKewMzmU5DamX8QsaYI3tZvIQRcjOKlUaQV+O3DY0qeV2KQIotHjWiYBrt46iaHtG90zM="
+
+before_install:
+      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "Diftraku/muas-sweng-project-2016"
+      description: "Build submitted via Travis CI"
+    build_command_prepend: "./gradlew clean"
+    build_command:   "./gradlew build"
+    branch_pattern: coverity_scan
+    notification_email: toni.kaija@metropolia.fi
+
 language: java
 
 jdk:
