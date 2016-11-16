@@ -51,6 +51,7 @@ public class Control {
         Valitulos = "";
         lasku = "";
         place = 0;
+        luolista.nollaa();
         //edellinen = "tyhja";
         //arvot.clear();
         //merkit.clear();
@@ -110,11 +111,14 @@ public class Control {
     public void sulut(String sulku) {
         if (Objects.equals(sulku, "(")) {
         	listat.add(place, lasku);
+        	System.out.println(lasku);
         	place++;
         	lasku = "";
         }
         else if (Objects.equals(sulku, ")")) {
+        	lasku += sulku;
         	listat.add(place, lasku);
+        	System.out.println(lasku);
         	place--;
         	lasku = listat.get(place);
         	lasku += "x";
@@ -122,6 +126,7 @@ public class Control {
         else if (Objects.equals(sulku, "=")) {
         	lasku += sulku;
         	listat.add(place, lasku);
+        	System.out.println(lasku);
         }
 
     }

@@ -14,6 +14,7 @@ public class LuoLista {
 	private double luku1 = 0;
 	private String value;
 	private int number = 0;
+	private int loppu = 0;
 	/*
 	 * Sets last number so it can be used in the next calculation
 	 */
@@ -32,11 +33,17 @@ public class LuoLista {
 		luku = "";
 		number = 0;
 		value = "";
+		loppu = 0;
 		System.out.println(arvot +""+ merkit+" nollattu?");
 	}
 
 	public void luolista(String Value){
-		while (!Objects.equals(value, "=")){
+		loppu = 0;
+		while (Objects.equals(loppu, 0)){
+			if (Objects.equals(value, "=") || (Objects.equals(value, ")"))){
+				loppu = 1;
+			}
+			else{
 			System.out.println(Value);
 			value = String.valueOf(Value.charAt(number));
 			number++;
@@ -52,6 +59,7 @@ public class LuoLista {
 	            setLuku(String.valueOf(value));
 	            System.out.println("luku "+value);
 	        }
+			}
 		}
 
 	}

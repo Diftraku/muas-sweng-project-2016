@@ -23,7 +23,7 @@ public class Laskujarjestys {
 	 *Calculates the counting order
 	 */
 	public double laske(ArrayList<Double> arvotList, ArrayList<String> merkitList){
-		//laskin.nollaa();
+		laskin.nollaa();
 		System.out.println(laskin.annaTulos()+ "laske");
 		setArvotList(arvotList);
 		setMerkitList(merkitList);
