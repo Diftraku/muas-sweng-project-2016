@@ -130,10 +130,9 @@ public class Laskujarjestys {
 	 */
 	public void nollaa(){
 		eka = 0;
-		//tulos = 0;
-		//valitulos = null;
 		arvot.clear();
 		merkit.clear();
+		System.out.println(arvot +""+ merkit+" nollattu?");
 
 	}
 	public void setEka(int i){

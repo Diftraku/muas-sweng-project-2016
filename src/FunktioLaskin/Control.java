@@ -14,21 +14,13 @@ public class Control {
     private Laskujarjestys laske;
     ArrayList<String> listat;
     private String lasku = "";
-    private int size;
     private int place = 0;
     private LuoLista luolista;
     private char aChar;
-    private int i = 0;
     private String Valitulos;
     private CharSequence charplace = "x";
 
-    private LuoLista lista;
-    private LuoLista lista1;
-    private LuoLista lista2;
-    private LuoLista lista3;
     private double Tulos;
-    //private double vanha;
-    private int sulut = 0;
 
 
     /*
@@ -41,10 +33,6 @@ public class Control {
         listat = new ArrayList<String>();
         luolista = new LuoLista();
 
-        lista = new LuoLista();
-        lista1 = new LuoLista();
-        lista2 = new LuoLista();
-        lista3 = new LuoLista();
     }
 
     public static Control getInstance() {
@@ -59,18 +47,21 @@ public class Control {
         laskin.nollaa();
         laske.nollaa();
         Tulos = 0;
-        lista.nollaa();
-        lista1.nollaa();
-        lista2.nollaa();
-        lista3.nollaa();
-        sulut = 0;
-        Valitulos = null;
+        listat.clear();
+        Valitulos = "";
+        lasku = "";
+        place = 0;
         //edellinen = "tyhja";
         //arvot.clear();
         //merkit.clear();
         //miinus = 0;
         //luku1 = 0;
         //luku = null;
+        System.out.println(listat+" nollattu?");
+    }
+    public void nollaaValilasku(){
+    	laske.nollaa();
+    	laskin.nollaa();
     }
 
     /*
@@ -84,6 +75,7 @@ public class Control {
     			luolista.luolista(listat.get(i));
     			System.out.println("laskee tuloksen" + luolista.getArvotList() + ", " + luolista.getMerkitList());
     			Tulos = laske.laske(luolista.getArvotList(), luolista.getMerkitList());
+    			nollaaValilasku();
     			aChar = ((CharSequence) lasku).charAt(i);
     			while (aChar == 'x'){
     				aChar = ((CharSequence) lasku).charAt(i);
@@ -97,6 +89,7 @@ public class Control {
     			luolista.luolista(listat.get(i));
         		System.out.println("laskee tuloksen" + luolista.getArvotList() + ", " + luolista.getMerkitList());
                 Tulos = laske.laske(luolista.getArvotList(), luolista.getMerkitList());
+                nollaaValilasku();
     		}
     	}
     	//System.out.println("laskee lopputuloksen" + lista.getArvotList() + ", " + lista.getMerkitList());

@@ -8,8 +8,6 @@ public class LuoLista {
 
 	ArrayList<Double> arvot;
 	ArrayList<String> merkit;
-	private String newString="";
-	private String stringValue;
 	private String edellinen = "tyhja";
 	private int miinus = 0;
 	private String luku;
@@ -31,11 +29,13 @@ public class LuoLista {
 		merkit.clear();
 		miinus = 0;
 		luku1 = 0;
-		luku = null;
+		luku = "";
+		number = 0;
+		value = "";
+		System.out.println(arvot +""+ merkit+" nollattu?");
 	}
 
 	public void luolista(String Value){
-		stringValue = Value;
 		while (!Objects.equals(value, "=")){
 			System.out.println(Value);
 			value = String.valueOf(Value.charAt(number));
