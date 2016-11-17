@@ -8,7 +8,7 @@ package FunktioLaskin;
  */
 public class Formula {
 
-    private String formula = "";    
+    private String formula = "";
     private String id;
 
     /*

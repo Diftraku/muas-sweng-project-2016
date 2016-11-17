@@ -56,7 +56,7 @@ public class FunktioLaskinView extends VBox {
                     control.setValue(value);
                 } else if (Objects.equals(value, "Pii")) {
                     //control.setPii();
-                    formula = dao.findFormula(1);
+                    formula = dao.findFormula("1");
                     screen.setText(formula.getFormula());
                 } else if (Objects.equals(value, "=")) {
                     control.sulut(value);
