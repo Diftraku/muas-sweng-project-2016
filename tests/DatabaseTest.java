@@ -31,9 +31,35 @@ public class DatabaseTest {
         assertTrue(conn != null);
     }
     @Test
+    public void insertFormulaTest() {
+        String id = "2";
+        System.out.println("Insert formula test");
+        Formula formula = new Formula();
+        formula.setFormula("n!");
+        formula.setId(id);
+        dao.insertFormula(formula);
+        Formula formula2 = dao.findFormula(id);
+        assertTrue(formula2.getFormula().equals("n!"));
+    }
+
+    @Test
     public void findFormulaTest() {
+        String id = "1";
         System.out.println("Find formula test");
-        Formula formula = dao.findFormula(1);
-        assertTrue(formula.getId() == 1);
+        Formula formula = dao.findFormula(id);
+        assertTrue(formula.getId().equals(id));
+    }
+    //@Test
+    public void deleteFormulaTest() {
+        System.out.println("Delete formula test");
+        /*String id = "2";
+        System.out.println("Delete formula test");
+        Formula formula = new Formula();
+        formula.setFormula("n!");
+        formula.setId(id);
+        dao.insertFormula(formula);*/
+        dao.deleteFormula("2");
+        Formula formula2 = dao.findFormula("2");
+        assertTrue(!formula2.getFormula().equals("n!"));
     }
 }
