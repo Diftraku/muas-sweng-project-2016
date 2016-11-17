@@ -121,6 +121,7 @@ public class Control {
         	System.out.println(lasku);
         	place--;
         	lasku = listat.get(place);
+        	listat.remove(place);
         	lasku += "x";
         }
         else if (Objects.equals(sulku, "=")) {

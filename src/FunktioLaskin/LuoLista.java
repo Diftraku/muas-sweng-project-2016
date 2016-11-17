@@ -44,11 +44,10 @@ public class LuoLista {
 				loppu = 1;
 			}
 			else{
-			System.out.println(Value);
 			value = String.valueOf(Value.charAt(number));
 			number++;
 			System.out.println(value);
-			if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")|| Objects.equals(value, "=")) {
+			if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")|| Objects.equals(value, "=") || Objects.equals(value, ")")) {
 	            setMerkki(String.valueOf(value));
 	            System.out.println("merkki "+value);
 	        } else if (Objects.equals(value, "N") || Objects.equals(value, "sin") || Objects.equals(value, "tan") || Objects.equals(value, "cos")) {
@@ -66,23 +65,23 @@ public class LuoLista {
 
 
 	public void setLuku(String value){
-		if (edellinen == "tyhja"){
+		if (Objects.equals(edellinen, "tyhja")){
 			luku = value;
 			edellinen = "numero";
 		}
-		else if (edellinen == "merkki"){
+		else if (Objects.equals(edellinen, "merkki")){
 			luku = value;
 			edellinen = "numero";
 		}
-		else if (edellinen == "numero"){
+		else if (Objects.equals(edellinen, "numero")){
 			luku+=value;
 			edellinen = "numero";
 		}
-		else if (edellinen == "emerkki"){
+		else if (Objects.equals(edellinen, "emerkki")){
 			luku = value;
 			edellinen = "enumero";
 		}
-		else if (edellinen == "enumero"){
+		else if (Objects.equals(edellinen, "enumero")){
 			luku+=value;
 			edellinen = "enumero";
 		}
@@ -96,10 +95,10 @@ public class LuoLista {
 	   }catch (NumberFormatException e){
 	       System.out.println(arvo);
 	   }
-			if (miinus == 0){
+			if (Objects.equals(miinus, 0)){
 				arvot.add(luku1);
 			}
-			else if (miinus == 1){
+			else if (Objects.equals(miinus, 1)){
 				arvot.add(0-luku1);
 			}
 		}
@@ -114,12 +113,12 @@ public class LuoLista {
 			edellinen = "enumero";
 	}
 	public void setMerkki(String merkki){
-		if (edellinen == "tyhja"){
+		if (Objects.equals(edellinen, "tyhja")){
 			edellinen = "numero";
 
 		}
-		else if (edellinen == "numero" || edellinen == "enumero"){
-			if (merkki == "="){
+		else if ((Objects.equals(edellinen, "numero")) || (Objects.equals(edellinen, "enumero"))){
+			if ((Objects.equals(merkki, "=")) || (Objects.equals(merkki, ")"))){
 				setArvo(luku);
 				edellinen = "numero";
 				miinus = 0;
@@ -131,13 +130,13 @@ public class LuoLista {
 				miinus = 0;
 			}
 		}
-		else if (edellinen == "sulut"){
+		else if (Objects.equals(edellinen, "sulut")){
 				merkit.add(merkki);
 				edellinen = "merkki";
 				miinus = 0;
 		}
 		else{
-			if (merkki == "-"){
+			if (Objects.equals(edellinen, "-")){
 				miinus = 1;
 				edellinen = "merkki";
 			}
