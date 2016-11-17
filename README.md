@@ -2,6 +2,7 @@
 Metropolia University of Applied Sciences - Software Engineering Project 2016
 
 [![Build Status](https://travis-ci.org/Diftraku/muas-sweng-project-2016.svg?branch=master)](https://travis-ci.org/Diftraku/muas-sweng-project-2016)
+[![Coverity Status](https://scan.coverity.com/projects/10815/badge.svg)](https://scan.coverity.com/projects/diftraku-muas-sweng-project-2016)
 
 Kyseessä on monifunktiolaskin, jolla on tarkoitus pystyä suoraan käyttämään hankaliakin kaavoja suoraan keskellä funktioita. Tämä tarkoittaa sitä että kaavoja voi poistaa ja lisätä mielivaltaisesti käyttäjän valitsemalle paikalle. Kaavojen muuttujiin pääsy tehdään helpoksi käyttöliittymään. Muuttujat näytetään erillisessä listassa laskutoimituksen vierellä, jossa niihin voi antaa arvoja. Myös kosketusnäytön ominaisuudet otetaan huomioon.
 
