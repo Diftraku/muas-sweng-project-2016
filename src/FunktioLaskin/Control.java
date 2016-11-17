@@ -19,6 +19,7 @@ public class Control {
     private char aChar;
     private String Valitulos;
     private CharSequence charplace = "x";
+    private String newString = "";
 
     private double Tulos;
 
@@ -63,6 +64,7 @@ public class Control {
     public void nollaaValilasku(){
     	laske.nollaa();
     	laskin.nollaa();
+    	newString = "";
     }
 
     /*
@@ -77,18 +79,26 @@ public class Control {
     			System.out.println("laskee tuloksen" + luolista.getArvotList() + ", " + luolista.getMerkitList());
     			Tulos = laske.laske(luolista.getArvotList(), luolista.getMerkitList());
     			nollaaValilasku();
-    			aChar = ((CharSequence) lasku).charAt(i);
-    			while (aChar == 'x'){
-    				aChar = ((CharSequence) lasku).charAt(i);
-    				i++;
-    				}
+
     		Valitulos = Double.toString(Tulos);
-    		lasku.replace(charplace, Valitulos);
-    		listat.set((i-1), lasku);
+    		lasku = listat.get(i-1);
+    		//lasku.replace("x", Valitulos);
+    		//replace x in previous string with result of calculations inside prackets
+    		for (int k=0; k < lasku.length(); k++){
+    			aChar = ((CharSequence) lasku).charAt(k);
+    			if (Objects.equals(aChar, 'x')){
+    				newString += Valitulos;
+
+    			}
+    			else {
+    				newString += Character.toString(aChar);
+    			}
     		}
-    		else if ( i == 0){
+    		listat.set((i-1), newString);
+    		}
+    		else if (Objects.equals(i, 0)){
     			luolista.luolista(listat.get(i));
-        		System.out.println("laskee tuloksen" + luolista.getArvotList() + ", " + luolista.getMerkitList());
+        		System.out.println(listat.get(i)+ " 0 laskee tuloksen" + luolista.getArvotList() + ", " + luolista.getMerkitList());
                 Tulos = laske.laske(luolista.getArvotList(), luolista.getMerkitList());
                 nollaaValilasku();
     		}

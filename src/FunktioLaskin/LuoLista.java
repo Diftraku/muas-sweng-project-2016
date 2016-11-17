@@ -38,7 +38,7 @@ public class LuoLista {
 	}
 
 	public void luolista(String Value){
-		loppu = 0;
+		nollaa();
 		while (Objects.equals(loppu, 0)){
 			if (Objects.equals(value, "=") || (Objects.equals(value, ")"))){
 				loppu = 1;

@@ -89,6 +89,7 @@ public class Laskujarjestys {
 				System.out.println(arvot);
 				System.out.println(merkit);
 				laskin.lisaa((double) arvot.get(i));
+
 			}
 			else if (Objects.equals(merkit.get(i), "-")){
 				if (Objects.equals(eka, 0)){
