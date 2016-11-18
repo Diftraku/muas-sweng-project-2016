@@ -27,6 +27,10 @@ public class Laskujarjestys {
 		System.out.println(laskin.annaTulos()+ "laske");
 		setArvotList(arvotList);
 		setMerkitList(merkitList);
+		/*
+		 * Checks witch operation is next to calculate and calculates it.
+		 * Uses arrays to calculate right numbers and operations
+		 */
 		for (int i = 0; i < merkit.size(); i++){
 			if (Objects.equals(merkit.get(i), "N")){
 				laskin.neliojuuri((double) arvot.get(i));

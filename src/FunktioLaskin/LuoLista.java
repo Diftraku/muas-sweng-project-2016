@@ -24,6 +24,9 @@ public class LuoLista {
 		arvot = new ArrayList<Double>();
 		merkit = new ArrayList<String>();
 	}
+	/*
+	 * Clears the operation and number lists and result
+	 */
 	public void nollaa(){
 		edellinen = "tyhja";
 		arvot.clear();
@@ -37,6 +40,9 @@ public class LuoLista {
 		System.out.println(arvot +""+ merkit+" nollattu?");
 	}
 
+	/*
+	 * Sets values to methods witch makes lists
+	 */
 	public void luolista(String Value){
 		nollaa();
 		while (Objects.equals(loppu, 0)){
@@ -63,6 +69,9 @@ public class LuoLista {
 
 	}
 
+	/*
+	 *  Saves numbers to string, so that biger numbers and decimals are possible to save
+	 */
 
 	public void setLuku(String value){
 		if (Objects.equals(edellinen, "tyhja")){
@@ -106,12 +115,15 @@ public class LuoLista {
 		arvot.add(arvo);
 	}
 	/*
-	 * Sets operation in the operation array
+	 * Sets operation in the operation array and sends numbers to method witch adds them to array
 	 */
 	public void setEmerkki(String merkki){
 			merkit.add(merkki);
 			edellinen = "enumero";
 	}
+	/*
+	 * Sets operation in the operation array and sends numbers to method witch adds them to array
+	 */
 	public void setMerkki(String merkki){
 		if (Objects.equals(edellinen, "tyhja")){
 			edellinen = "numero";
@@ -182,7 +194,9 @@ public class LuoLista {
 				arvot.add(0-Math.PI);
 			}
 		}
-
+		/*
+		 * Sets edellinen to sulut
+		 */
 		public void setEdellinenSulut(){
 			edellinen = "sulut";
 		}

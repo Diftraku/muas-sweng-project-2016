@@ -61,6 +61,9 @@ public class Control {
         //luku = null;
         System.out.println(listat+" nollattu?");
     }
+    /*
+	 * clears only chosen classes between calculations
+	 */
     public void nollaaValilasku(){
     	laske.nollaa();
     	laskin.nollaa();
@@ -69,21 +72,26 @@ public class Control {
 
     /*
      * Counts the calculation in the right order
+     *
      */
     public void laskelopputulos() {
     	System.out.println("control" +listat);
     	for (int i = (listat.size()-1); i >= 0; i--){
+    		/*
+    		 * checks if there are multiple strings in array.
+    		 * if so calculates last one first and so on
+    		 * saves result each time
+    		 */
     		if (i!= 0){
-
     			luolista.luolista(listat.get(i));
     			System.out.println("laskee tuloksen" + luolista.getArvotList() + ", " + luolista.getMerkitList());
     			Tulos = laske.laske(luolista.getArvotList(), luolista.getMerkitList());
     			nollaaValilasku();
-
-    		Valitulos = Double.toString(Tulos);
-    		lasku = listat.get(i-1);
-    		//lasku.replace("x", Valitulos);
-    		//replace x in previous string with result of calculations inside prackets
+    			Valitulos = Double.toString(Tulos);
+    			lasku = listat.get(i-1);
+    		/*
+    		 * replace x in previous string with result of calculations inside prackets
+    		 */
     		for (int k=0; k < lasku.length(); k++){
     			aChar = ((CharSequence) lasku).charAt(k);
     			if (Objects.equals(aChar, 'x')){
@@ -96,6 +104,9 @@ public class Control {
     		}
     		listat.set((i-1), newString);
     		}
+    		/*
+    		 * Calculates final string and saves result
+    		 */
     		else if (Objects.equals(i, 0)){
     			luolista.luolista(listat.get(i));
         		System.out.println(listat.get(i)+ " 0 laskee tuloksen" + luolista.getArvotList() + ", " + luolista.getMerkitList());
@@ -103,21 +114,17 @@ public class Control {
                 nollaaValilasku();
     		}
     	}
-    	//System.out.println("laskee lopputuloksen" + lista.getArvotList() + ", " + lista.getMerkitList());
-        //Tulos = laske.laske(lista.getArvotList(), lista.getMerkitList());
-
-    		//listat.set(, Valitulos)
     	}
-        /*laske.setArvotList(lista.getArvotList());
-		laske.setMerkitList(lista.getMerkitList());*/
-        //System.out.println("laskee lopputuloksen" + lista.getArvotList() + ", " + lista.getMerkitList());
-        //Tulos = laske.laske(lista.getArvotList(), lista.getMerkitList());
-
-    //Uusi koodi
+    /*
+	 * sets value to string "lasku#
+	 */
     public void setValue(String value) {
         lasku += value;
     }
 
+    /*
+	 * if prackets where used makes new string to array
+	 */
     public void sulut(String sulku) {
         if (Objects.equals(sulku, "(")) {
         	listat.add(place, lasku);
@@ -125,6 +132,9 @@ public class Control {
         	place++;
         	lasku = "";
         }
+        /*
+    	 * adds new string to array and goes back to previous string in array
+    	 */
         else if (Objects.equals(sulku, ")")) {
         	lasku += sulku;
         	listat.add(place, lasku);
@@ -134,6 +144,9 @@ public class Control {
         	listat.remove(place);
         	lasku += "x";
         }
+        /*
+    	 * adds new string to array
+    	 */
         else if (Objects.equals(sulku, "=")) {
         	lasku += sulku;
         	listat.add(place, lasku);
