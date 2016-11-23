@@ -32,7 +32,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-    	Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"));
 		//FXMLLoader loader = new FXMLLoader(Main.class.getResource("View.fxml"));
 		//loader.setController(new MainController("FunktioLaskin.Control"));
 		//Parent root2 = loader.load();
