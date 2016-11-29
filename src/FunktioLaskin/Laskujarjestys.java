@@ -82,16 +82,11 @@ public class Laskujarjestys {
 		for (int i = 0; i < merkit.size(); i++){
 			if (Objects.equals(merkit.get(i), "+")){
 				if (Objects.equals(eka, 0)){
-					System.out.println(arvot);
-					System.out.println(merkit);
 					laskin.lisaa((double) arvot.get(i));
 					arvot.remove(i);
 					System.out.println(arvot);
 					eka = 1;
 				}
-
-				System.out.println(arvot);
-				System.out.println(merkit);
 				laskin.lisaa((double) arvot.get(i));
 
 			}

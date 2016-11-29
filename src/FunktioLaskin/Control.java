@@ -20,6 +20,8 @@ public class Control {
     private String Valitulos;
     private CharSequence charplace = "x";
     private String newString = "";
+    private int StrChar = 0;
+    private int lisaai= 0;
 
     private double Tulos;
 
@@ -82,7 +84,8 @@ public class Control {
     		 * if so calculates last one first and so on
     		 * saves result each time
     		 */
-    		if (i!= 0){
+
+    		if (!Objects.equals(i,  0)){
     			luolista.luolista(listat.get(i));
     			System.out.println("laskee tuloksen" + luolista.getArvotList() + ", " + luolista.getMerkitList());
     			Tulos = laske.laske(luolista.getArvotList(), luolista.getMerkitList());
@@ -92,17 +95,27 @@ public class Control {
     		/*
     		 * replace x in previous string with result of calculations inside prackets
     		 */
+    			StrChar = 0;
     		for (int k=0; k < lasku.length(); k++){
     			aChar = ((CharSequence) lasku).charAt(k);
-    			if (Objects.equals(aChar, 'x')){
-    				newString += Valitulos;
-
+    			if (Objects.equals(StrChar, 0)){
+    				if (Objects.equals(aChar, 'x')){
+        				newString += Valitulos;
+        				StrChar = 1;
+        			}
+        			else {
+        				newString += Character.toString(aChar);
+        			}
     			}
-    			else {
+    			else if (Objects.equals(StrChar, 1)){
+    				if (Objects.equals(aChar, 'x')){
+    				}
     				newString += Character.toString(aChar);
     			}
+
     		}
-    		listat.set((i-1), newString);
+    			listat.set((i-1), newString);
+
     		}
     		/*
     		 * Calculates final string and saves result
