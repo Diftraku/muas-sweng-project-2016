@@ -1,14 +1,19 @@
 package FunktioLaskin;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 /*
  * Controller class
  */
-public class Control {
-    private static final Control instance = new Control();
-
+public class Controller {
     private Laskin laskin;
     private Main main;
     private Laskujarjestys laske;
@@ -26,10 +31,18 @@ public class Control {
     private double Tulos;
 
 
+    // JavaFX Elements
+    @FXML
+    private TextField screen;
+
+    @FXML
+    private ListView<String> history;
+
+
     /*
      * Constructor
      */
-    private Control() {
+    public Controller() {
         laskin = new Laskin();
         main = new Main();
         laske = new Laskujarjestys();
@@ -38,9 +51,76 @@ public class Control {
 
     }
 
-    public static Control getInstance() {
-        return instance;
+
+    @FXML
+    public boolean screenIsEmpty() {
+        System.out.println(screen == null);
+        if (screen.getText() != null && !screen.getText().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
     }
+
+    @FXML
+    public void printToScreen(String value) {
+        if (screenIsEmpty()) {
+            if (!Objects.equals(value, "=")) {
+                screen.setText(value);
+            }
+        } else {
+            if (!Objects.equals(value, "=")) {
+                screen.appendText(value);
+            }
+        }
+    }
+
+    @FXML
+    public void numbersAndOperators(ActionEvent e) {
+        Button btn = (Button) e.getSource();
+        String value = btn.getText();
+
+        if (Objects.equals(value, "sqrt")) {
+            this.setValue("N");
+        } else if (Objects.equals(value, "PI")) {
+            this.setValue("PII");
+        }
+        this.setValue(value);
+        printToScreen(value);
+    }
+
+    @FXML
+    public void equals(ActionEvent e) {
+        String value = "=";
+        this.sulut(value);
+        this.laskelopputulos();
+        String historyLine = screen.getText()+"="+Double.toString(this.getTulos());
+        history.getItems().add(history.getItems().size(), historyLine);
+        history.scrollTo(historyLine);
+        screen.setText(Double.toString(this.getTulos()));
+        printToScreen(value);
+    }
+
+    @FXML
+    public void clear(ActionEvent e) {
+        screen.clear();
+        this.nollaa();
+    }
+
+    @FXML
+    public void brackets(ActionEvent e) {
+        Button btn = (Button) e.getSource();
+        String value = btn.getText();
+        this.sulut(value);
+        printToScreen(value);
+    }
+
+    @FXML
+    public void backspace(ActionEvent e) {
+
+    }
+
+    // Ye Olde code
 
     /*
      * clears the calculator
@@ -77,7 +157,7 @@ public class Control {
      *
      */
     public void laskelopputulos() {
-    	System.out.println("control" +listat);
+    	System.out.println("this" +listat);
     	for (int i = (listat.size()-1); i >= 0; i--){
     		/*
     		 * checks if there are multiple strings in array.

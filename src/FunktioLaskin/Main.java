@@ -15,10 +15,6 @@ import java.io.IOException;
  * Main class for starting the javafx application
  */
 public class Main extends Application {
-    private Control control;
-    private VBox view;
-    private DoubleProperty value = new SimpleDoubleProperty();
-
     /*
      * Main function
      */
@@ -33,22 +29,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
     	Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"));
-		//FXMLLoader loader = new FXMLLoader(Main.class.getResource("View.fxml"));
-		//loader.setController(new MainController("FunktioLaskin.Control"));
-		//Parent root2 = loader.load();
 		stage.setTitle("Calculator");
-		stage.setScene(new Scene(root, 800, 700));	
+		stage.setScene(new Scene(root, 780, 600));
 		stage.show();
-
-        /*
-        OLD MAIN!!!!!
-        control = Control.getInstance();
-        view = new FunktioLaskinView();
-        stage.setTitle("Calc");
-        stage.initStyle(StageStyle.UNIFIED);
-        stage.setResizable(false);
-        stage.setScene(new Scene(view));
-        stage.show();
-         */
     }
 }
