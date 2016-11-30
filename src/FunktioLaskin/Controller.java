@@ -26,7 +26,7 @@ public class Controller {
     private String newString = "";
     private int StrChar = 0;
     private int lisaai= 0;
-
+    private double vanha;
     private double Tulos;
 
 
@@ -125,7 +125,7 @@ public class Controller {
      * clears the calculator
      */
     public void nollaa() {
-        //vanha = Tulos;
+        vanha = Tulos;
         laskin.nollaa();
         laske.nollaa();
         Tulos = 0;
@@ -149,6 +149,17 @@ public class Controller {
     	laske.nollaa();
     	laskin.nollaa();
     	newString = "";
+    }
+    public void nollaaJatkalaskua() {
+        vanha = Tulos;
+        laskin.nollaa();
+        laske.nollaa();
+        listat.clear();
+        Valitulos = "";
+        lasku = "";
+        place = 0;
+        luolista.nollaa();
+        setValue(Double.toString(Tulos));
     }
 
     /*
@@ -206,6 +217,7 @@ public class Controller {
                 nollaaValilasku();
     		}
     	}
+    	nollaaJatkalaskua();
     	}
     /*
 	 * sets value to string "lasku#
@@ -213,7 +225,12 @@ public class Controller {
     public void setValue(String value) {
         lasku += value;
     }
-
+    /*
+         * sets answer to string "lasku#
+         */
+    public void setAnswer() {
+        lasku += vanha;
+    }
     /*
 	 * if prackets where used makes new string to array
 	 */
