@@ -219,6 +219,7 @@ public class Controller {
 	 */
     public void sulut(String sulku) {
         if (Objects.equals(sulku, "(")) {
+            lasku += sulku;
         	listat.add(place, lasku);
         	System.out.println(lasku);
         	place++;

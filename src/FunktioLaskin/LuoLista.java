@@ -52,7 +52,7 @@ public class LuoLista {
 			value = String.valueOf(Value.charAt(number));
 			number++;
 			System.out.println(value);
-			if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")|| Objects.equals(value, "=") || Objects.equals(value, ")")) {
+			if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")|| Objects.equals(value, "=") || Objects.equals(value, ")") || Objects.equals(value, "(")) {
 	            setMerkki(String.valueOf(value));
 	            System.out.println("merkki "+value);
 	        } else if (Objects.equals(value, "N") || Objects.equals(value, "sin") || Objects.equals(value, "tan") || Objects.equals(value, "cos")) {
@@ -134,18 +134,30 @@ public class LuoLista {
 				edellinen = "numero";
 				miinus = 0;
 			}
+			else if (Objects.equals(merkki, "(")){
+				setArvo(luku);
+				merkit.add("*");
+				edellinen = "merkki";
+				miinus = 0;
+			}
 			else{
 				setArvo(luku);
 				merkit.add(merkki);
 				edellinen = "merkki";
 				miinus = 0;
 			}
+
 		}
 		else if (Objects.equals(edellinen, "sulut")){
 				merkit.add(merkki);
 				edellinen = "merkki";
 				miinus = 0;
 		}
+		else if (Objects.equals(edellinen, "merkki")){
+			if (Objects.equals(merkki, "(")) {
+				System.out.println("nothing");
+			}
+			}
 		else{
 			if (Objects.equals(edellinen, "-")){
 				miinus = 1;
