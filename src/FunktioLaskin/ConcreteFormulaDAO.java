@@ -59,7 +59,7 @@ public class ConcreteFormulaDAO implements FormulaDAO {
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1, id);
             statement.executeUpdate();
-            statement.closeOnCompletion();
+            statement.close();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -82,7 +82,7 @@ public class ConcreteFormulaDAO implements FormulaDAO {
             statement.setString(1, formula.getId());
             statement.setString(2, formula.getFormula());
             statement.executeUpdate();
-            statement.closeOnCompletion();
+            statement.close();
         }catch (Exception e) {
             e.printStackTrace();
         }

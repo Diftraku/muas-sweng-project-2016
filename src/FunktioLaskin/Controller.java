@@ -53,7 +53,6 @@ public class Controller {
 
     @FXML
     public boolean screenIsEmpty() {
-        System.out.println(screen == null);
         if (screen.getText() != null && !screen.getText().isEmpty()) {
             return false;
         } else {
