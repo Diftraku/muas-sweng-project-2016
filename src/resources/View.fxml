@@ -45,12 +45,12 @@
             </MenuBar>
             <HBox prefHeight="120.0">
                <children>
-                  <ListView fx:id="history" HBox.hgrow="ALWAYS" />
+                  <ListView editable="false" fx:id="history" onMouseClicked="#fetchHistory" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox prefHeight="30.0">
                <children>
-                  <TextField fx:id="screen" promptText="0" style="-fx-min-height: 30;" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="screen" onKeyReleased="#handleScreenInput" promptText="0" style="-fx-min-height: 30;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
@@ -93,7 +93,7 @@
             <Button fx:id="n" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="168.0" text="n!" GridPane.rowIndex="4" />
             <Button fx:id="mode" layoutX="146.0" layoutY="106.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="168.0" text="M" GridPane.rowIndex="2" />
             <Button fx:id="equals" layoutX="146.0" layoutY="106.0" mnemonicParsing="false" onAction="#equals" prefHeight="49.0" prefWidth="168.0" text="=" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-            <Button fx:id="clear_everything" layoutX="146.0" layoutY="106.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="168.0" text="CE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="clear_everything" layoutX="146.0" layoutY="106.0" mnemonicParsing="false" onAction="#clearEverything" prefHeight="49.0" prefWidth="168.0" text="CE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button fx:id="log" layoutX="146.0" layoutY="106.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="168.0" text="log" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="backspace" layoutX="146.0" layoutY="106.0" mnemonicParsing="false" onAction="#backspace" prefHeight="49.0" prefWidth="168.0" text="&lt;-" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Button fx:id="clear" layoutX="146.0" layoutY="58.0" mnemonicParsing="false" onAction="#clear" prefHeight="49.0" prefWidth="168.0" text="C" GridPane.columnIndex="2" GridPane.rowIndex="2" />

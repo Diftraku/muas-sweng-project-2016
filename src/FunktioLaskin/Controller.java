@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -47,7 +50,6 @@ public class Controller {
         laske = new Laskujarjestys();
         listat = new ArrayList<String>();
         luolista = new LuoLista();
-
     }
 
 
@@ -106,13 +108,46 @@ public class Controller {
         history.getItems().add(history.getItems().size(), historyLine);
         history.scrollTo(historyLine);
         screen.setText(Double.toString(this.getTulos()));
-        printToScreen(value);
+        //printToScreen(value);
     }
 
     @FXML
     public void clear(ActionEvent e) {
         screen.clear();
         this.nollaa();
+    }
+
+    @FXML
+    public void clearEverything(ActionEvent e) {
+        screen.clear();
+        this.nollaa();
+        history.getItems().clear();
+    }
+
+    @FXML
+    public void fetchHistory(MouseEvent e) {
+        String selectedLine = history.getSelectionModel().getSelectedItem();
+        if (selectedLine != null) {
+            String formula = selectedLine.substring(0, selectedLine.indexOf("="));
+            this.nollaa();
+            this.setValue(formula);
+            screen.setText(formula);
+        }
+
+    }
+    @FXML
+    public void handleScreenInput(KeyEvent keyEvent) {
+        System.out.println(keyEvent.getCode());
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            this.setValue(screen.getText());
+            this.equals(new ActionEvent());
+            this.nollaa();
+        }
+        else {
+            //String value = screen.getText();
+            //this.setValue(value);
+            //printToScreen(value);
+        }
     }
 
     @FXML
@@ -275,11 +310,6 @@ public class Controller {
         }
 
     }
-
-
-
-
-
 
     /*
      * returns the result
