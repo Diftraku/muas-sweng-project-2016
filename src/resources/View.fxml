@@ -89,7 +89,7 @@
             <Button fx:id="dot" layoutX="180.0" layoutY="185.0" mnemonicParsing="false" onAction="#numbersAndOperators" prefHeight="49.0" prefWidth="168.0" text="," GridPane.columnIndex="3" GridPane.rowIndex="6" />
             <Button fx:id="bracket_left" layoutX="146.0" layoutY="106.0" mnemonicParsing="false" onAction="#brackets" prefHeight="49.0" prefWidth="168.0" text="(" GridPane.rowIndex="6" />
             <Button fx:id="PI" layoutX="10.0" layoutY="248.0" mnemonicParsing="false" onAction="#numbersAndOperators" prefHeight="49.0" prefWidth="168.0" text="PI" GridPane.rowIndex="3" />
-            <Button fx:id="plus_minus" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="168.0" text="+-" GridPane.rowIndex="5" />
+            <Button fx:id="plus_minus" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#setAnswer" prefHeight="49.0" prefWidth="168.0" text="+-" GridPane.rowIndex="5" />
             <Button fx:id="n" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="168.0" text="n!" GridPane.rowIndex="4" />
             <Button fx:id="mode" layoutX="146.0" layoutY="106.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="168.0" text="M" GridPane.rowIndex="2" />
             <Button fx:id="equals" layoutX="146.0" layoutY="106.0" mnemonicParsing="false" onAction="#equals" prefHeight="49.0" prefWidth="168.0" text="=" GridPane.columnIndex="4" GridPane.rowIndex="6" />

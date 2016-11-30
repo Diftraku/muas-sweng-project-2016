@@ -228,7 +228,9 @@ public class Controller {
     /*
          * sets answer to string "lasku#
          */
+    @FXML
     public void setAnswer() {
+        this.printToScreen("Ans");
         lasku += vanha;
     }
     /*

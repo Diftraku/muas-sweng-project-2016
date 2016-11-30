@@ -12,6 +12,7 @@ public class ConcreteFormulaDAO implements FormulaDAO {
 
     private Formula formula;
     private Connection conn;
+    private PreparedStatement statement;
 
     public ConcreteFormulaDAO() {
         //formula = new Formula();
@@ -30,14 +31,14 @@ public class ConcreteFormulaDAO implements FormulaDAO {
             if(!isConnected()) {
                 conn = connectDatabase();
             }
-            PreparedStatement statement = conn.prepareStatement(query);
+            statement = conn.prepareStatement(query);
             statement.setString(1, id);
             ResultSet result = statement.executeQuery();
-            statement.closeOnCompletion();
             String resultStr = result.getString("formula");
             String id2 = result.getString("id");
             formula.setFormula(resultStr);
             formula.setId(id2);
+            statement.close();
             return formula;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,7 +57,7 @@ public class ConcreteFormulaDAO implements FormulaDAO {
             if(!isConnected()) {
                 conn = connectDatabase();
             }
-            PreparedStatement statement = conn.prepareStatement(query);
+            statement = conn.prepareStatement(query);
             statement.setString(1, id);
             statement.executeUpdate();
             statement.close();
@@ -78,7 +79,7 @@ public class ConcreteFormulaDAO implements FormulaDAO {
             if(!isConnected()) {
                 conn = connectDatabase();
             }
-            PreparedStatement statement = conn.prepareStatement(query);
+            statement = conn.prepareStatement(query);
             statement.setString(1, formula.getId());
             statement.setString(2, formula.getFormula());
             statement.executeUpdate();

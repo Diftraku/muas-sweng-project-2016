@@ -51,7 +51,11 @@ public class DatabaseTest {
         String id = "1";
         System.out.println("Find formula test");
         Formula formula = dao.findFormula(id);
-        assertTrue(formula.getId().equals(id));
+        if (formula == null) {
+            assertTrue(false);
+        }else {
+            assertTrue(formula.getId().equals(id));
+        }
     }
     /*@Test
     public void deleteFormulaTest() {
