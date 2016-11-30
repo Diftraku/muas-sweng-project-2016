@@ -26,8 +26,8 @@ public class Controller {
     private String newString = "";
     private int StrChar = 0;
     private int lisaai= 0;
-    private double vanha;
-    private double Tulos;
+    private double vanha=0;
+    private double Tulos=0;
 
 
     // JavaFX Elements
@@ -81,9 +81,10 @@ public class Controller {
         if (Objects.equals(value, "sqrt")) {
             this.setValue("N");
         } else if (Objects.equals(value, "PI")) {
-            this.setValue("PII");
+            this.setValue("P");
+        }else {
+            this.setValue(value);
         }
-        this.setValue(value);
         printToScreen(value);
     }
 

@@ -52,14 +52,12 @@ public class LuoLista {
 			value = String.valueOf(Value.charAt(number));
 			number++;
 			System.out.println(value);
-			if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")|| Objects.equals(value, "=") || Objects.equals(value, ")") || Objects.equals(value, "(")) {
+			if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")|| Objects.equals(value, "=") || Objects.equals(value, ")") || Objects.equals(value, "(") ) {
 	            setMerkki(String.valueOf(value));
 	            System.out.println("merkki "+value);
 	        } else if (Objects.equals(value, "N") || Objects.equals(value, "sin") || Objects.equals(value, "tan") || Objects.equals(value, "cos")) {
 	            setEmerkki(String.valueOf(value));
-	        } else if (Objects.equals(value, "Pii")) {
-	        	setPii();
-	        } else if (Objects.equals(value, "0") || Objects.equals(value, "1") || Objects.equals(value, "2") || Objects.equals(value, "3") || Objects.equals(value, "4") || Objects.equals(value, "5") || Objects.equals(value, "6") || Objects.equals(value, "7") || Objects.equals(value, "8") || Objects.equals(value, "9") || Objects.equals(value, ".")) {
+	        } else if (Objects.equals(value, "0") || Objects.equals(value, "1") || Objects.equals(value, "2") || Objects.equals(value, "3") || Objects.equals(value, "4") || Objects.equals(value, "5") || Objects.equals(value, "6") || Objects.equals(value, "7") || Objects.equals(value, "8") || Objects.equals(value, "9") || Objects.equals(value, ".")|| Objects.equals(value, "P")) {
 	            setLuku(String.valueOf(value));
 	            System.out.println("luku "+value);
 	        }
@@ -73,7 +71,18 @@ public class LuoLista {
 	 */
 
 	public void setLuku(String value){
-		if (Objects.equals(edellinen, "tyhja")){
+		if (Objects.equals(value, "P")) {
+			if (Objects.equals(edellinen, "numero")){
+				setArvo(luku);
+				merkit.add("*");
+				luku = Double.toString(Math.PI);
+			}
+			else {
+				luku = Double.toString(Math.PI);
+			}
+			edellinen = "numero";
+		}
+		else if (Objects.equals(edellinen, "tyhja")){
 			luku = value;
 			edellinen = "numero";
 		}
@@ -119,6 +128,7 @@ public class LuoLista {
 	public void setEmerkki(String merkki){
 			merkit.add(merkki);
 			edellinen = "enumero";
+
 	}
 	/*
 	 * Sets operation in the operation array and sends numbers to method witch adds them to array
@@ -153,11 +163,11 @@ public class LuoLista {
 				edellinen = "merkki";
 				miinus = 0;
 		}
-		else if (Objects.equals(edellinen, "merkki")){
+		else if (Objects.equals(edellinen, "merkki")) {
 			if (Objects.equals(merkki, "(")) {
 				System.out.println("nothing");
 			}
-			}
+		}
 		else{
 			if (Objects.equals(edellinen, "-")){
 				miinus = 1;
@@ -194,17 +204,7 @@ public class LuoLista {
 		public ArrayList<Double> getArvotList(){
 			return arvot;
 		}
-		/*
-		 * Sets Pii to arvot()
-		 */
-		public void setPii(){
-			if (miinus == 0){
-				arvot.add(Math.PI);
-			}
-			if (miinus == 1){
-				arvot.add(0-Math.PI);
-			}
-		}
+
 		/*
 		 * Sets edellinen to sulut
 		 */
