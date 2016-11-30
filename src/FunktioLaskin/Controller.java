@@ -82,6 +82,15 @@ public class Controller {
             this.setValue("N");
         } else if (Objects.equals(value, "PI")) {
             this.setValue("P");
+        }
+        else if (Objects.equals(value, "sin")) {
+            this.setValue("s");
+        }
+        else if (Objects.equals(value, "cos")) {
+            this.setValue("c");
+        }
+        else if (Objects.equals(value, "tan")) {
+            this.setValue("t");
         }else {
             this.setValue(value);
         }

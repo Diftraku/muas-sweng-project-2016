@@ -55,7 +55,7 @@ public class LuoLista {
 			if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")|| Objects.equals(value, "=") || Objects.equals(value, ")") || Objects.equals(value, "(") ) {
 	            setMerkki(String.valueOf(value));
 	            System.out.println("merkki "+value);
-	        } else if (Objects.equals(value, "N") || Objects.equals(value, "sin") || Objects.equals(value, "tan") || Objects.equals(value, "cos")) {
+	        } else if (Objects.equals(value, "N") || Objects.equals(value, "s") || Objects.equals(value, "t") || Objects.equals(value, "c")) {
 	            setEmerkki(String.valueOf(value));
 	        } else if (Objects.equals(value, "0") || Objects.equals(value, "1") || Objects.equals(value, "2") || Objects.equals(value, "3") || Objects.equals(value, "4") || Objects.equals(value, "5") || Objects.equals(value, "6") || Objects.equals(value, "7") || Objects.equals(value, "8") || Objects.equals(value, "9") || Objects.equals(value, ".")|| Objects.equals(value, "P")) {
 	            setLuku(String.valueOf(value));
@@ -127,7 +127,7 @@ public class LuoLista {
 	 */
 	public void setEmerkki(String merkki){
 			merkit.add(merkki);
-			edellinen = "enumero";
+			edellinen = "emerkki";
 
 	}
 	/*

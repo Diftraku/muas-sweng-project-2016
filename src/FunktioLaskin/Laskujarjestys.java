@@ -37,17 +37,17 @@ public class Laskujarjestys {
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
 			}
-			else if (Objects.equals(merkit.get(i), "cos")){
+			else if (Objects.equals(merkit.get(i), "c")){
 				laskin.cos((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
 			}
-			else if (Objects.equals(merkit.get(i), "sin")){
+			else if (Objects.equals(merkit.get(i), "s")){
 				laskin.sin((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
 			}
-			else if (Objects.equals(merkit.get(i), "tan")){
+			else if (Objects.equals(merkit.get(i), "t")){
 				laskin.tan((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
