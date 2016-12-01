@@ -1,8 +1,7 @@
-import FunktioLaskin.Control;
-import FunktioLaskin.FunktioLaskinView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
@@ -21,21 +20,18 @@ import static org.testfx.matcher.control.TextInputControlMatchers.hasText;
 public class FunktioLaskinGUITest extends ApplicationTest {
     @Override
     public void start(Stage stage) throws Exception {
-        Control control = Control.getInstance();
-        FunktioLaskinView view = new FunktioLaskinView();
-        stage.setTitle("Calc");
-        stage.initStyle(StageStyle.UNIFIED);
-        stage.setResizable(false);
-        stage.setScene(new Scene(view));
+        Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"));
+        stage.setTitle("Calculator");
+        stage.setScene(new Scene(root, 800, 700));
         stage.show();
     }
 
     @Test
     public void one_plus_two_equals_three() {
-        clickOn("#number_one");
-        clickOn("#add");
-        clickOn("#number_two");
+        clickOn("#one");
+        clickOn("#plus");
+        clickOn("#two");
         clickOn("#equals");
-        verifyThat("#result", hasText("3.0"));
+        verifyThat("#screen", hasText("3.0"));
     }
 }

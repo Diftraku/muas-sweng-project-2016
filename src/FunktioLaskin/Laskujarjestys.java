@@ -27,23 +27,27 @@ public class Laskujarjestys {
 		System.out.println(laskin.annaTulos()+ "laske");
 		setArvotList(arvotList);
 		setMerkitList(merkitList);
+		/*
+		 * Checks witch operation is next to calculate and calculates it.
+		 * Uses arrays to calculate right numbers and operations
+		 */
 		for (int i = 0; i < merkit.size(); i++){
-			if (Objects.equals(merkit.get(i), "N")){
+			if (Objects.equals(merkit.get(i), "q")){
 				laskin.neliojuuri((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
 			}
-			else if (Objects.equals(merkit.get(i), "cos")){
+			else if (Objects.equals(merkit.get(i), "c")){
 				laskin.cos((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
 			}
-			else if (Objects.equals(merkit.get(i), "sin")){
+			else if (Objects.equals(merkit.get(i), "s")){
 				laskin.sin((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
 			}
-			else if (Objects.equals(merkit.get(i), "tan")){
+			else if (Objects.equals(merkit.get(i), "t")){
 				laskin.tan((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;
@@ -78,16 +82,11 @@ public class Laskujarjestys {
 		for (int i = 0; i < merkit.size(); i++){
 			if (Objects.equals(merkit.get(i), "+")){
 				if (Objects.equals(eka, 0)){
-					System.out.println(arvot);
-					System.out.println(merkit);
 					laskin.lisaa((double) arvot.get(i));
 					arvot.remove(i);
 					System.out.println(arvot);
 					eka = 1;
 				}
-
-				System.out.println(arvot);
-				System.out.println(merkit);
 				laskin.lisaa((double) arvot.get(i));
 
 			}

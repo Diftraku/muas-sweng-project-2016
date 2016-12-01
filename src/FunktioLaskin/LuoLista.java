@@ -1,6 +1,5 @@
 package FunktioLaskin;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -24,6 +23,9 @@ public class LuoLista {
 		arvot = new ArrayList<Double>();
 		merkit = new ArrayList<String>();
 	}
+	/*
+	 * Clears the operation and number lists and result
+	 */
 	public void nollaa(){
 		edellinen = "tyhja";
 		arvot.clear();
@@ -37,6 +39,10 @@ public class LuoLista {
 		System.out.println(arvot +""+ merkit+" nollattu?");
 	}
 
+	/*
+	 * Sets values to methods witch makes lists
+	 * This method checks every possible button chars and puts the value in the right method
+	 */
 	public void luolista(String Value){
 		nollaa();
 		while (Objects.equals(loppu, 0)){
@@ -47,14 +53,12 @@ public class LuoLista {
 			value = String.valueOf(Value.charAt(number));
 			number++;
 			System.out.println(value);
-			if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")|| Objects.equals(value, "=") || Objects.equals(value, ")")) {
+			if (Objects.equals(value, "/") || Objects.equals(value, "*") || Objects.equals(value, "+") || Objects.equals(value, "-") || Objects.equals(value, "^")|| Objects.equals(value, "=") || Objects.equals(value, ")") || Objects.equals(value, "(") ) {
 	            setMerkki(String.valueOf(value));
 	            System.out.println("merkki "+value);
-	        } else if (Objects.equals(value, "N") || Objects.equals(value, "sin") || Objects.equals(value, "tan") || Objects.equals(value, "cos")) {
+	        } else if (Objects.equals(value, "q") || Objects.equals(value, "s") || Objects.equals(value, "t") || Objects.equals(value, "c")) {
 	            setEmerkki(String.valueOf(value));
-	        } else if (Objects.equals(value, "Pii")) {
-	        	setPii();
-	        } else if (Objects.equals(value, "0") || Objects.equals(value, "1") || Objects.equals(value, "2") || Objects.equals(value, "3") || Objects.equals(value, "4") || Objects.equals(value, "5") || Objects.equals(value, "6") || Objects.equals(value, "7") || Objects.equals(value, "8") || Objects.equals(value, "9") || Objects.equals(value, ".")) {
+	        } else if (Objects.equals(value, "0") || Objects.equals(value, "1") || Objects.equals(value, "2") || Objects.equals(value, "3") || Objects.equals(value, "4") || Objects.equals(value, "5") || Objects.equals(value, "6") || Objects.equals(value, "7") || Objects.equals(value, "8") || Objects.equals(value, "9") || Objects.equals(value, ".")|| Objects.equals(value, "P")) {
 	            setLuku(String.valueOf(value));
 	            System.out.println("luku "+value);
 	        }
@@ -63,9 +67,27 @@ public class LuoLista {
 
 	}
 
+	/*
+	 * Saves numbers to string, so that biger numbers and decimals are possible to save
+	 * There are multiple checks before system accepts char to a list
+	 * It check what kind of char was before this one and after that more specific if this char needs special treatment
+	 * It checks if there is need to add operations to merkitlist before this number or if this numper is Pii
+	 * It also checks is this number first or not to add string luku
+	 */
 
 	public void setLuku(String value){
-		if (Objects.equals(edellinen, "tyhja")){
+		if (Objects.equals(value, "P")) {
+			if (Objects.equals(edellinen, "numero")){
+				setArvo(luku);
+				merkit.add("*");
+				luku = Double.toString(Math.PI);
+			}
+			else {
+				luku = Double.toString(Math.PI);
+			}
+			edellinen = "numero";
+		}
+		else if (Objects.equals(edellinen, "tyhja")){
 			luku = value;
 			edellinen = "numero";
 		}
@@ -87,7 +109,7 @@ public class LuoLista {
 		}
 	}
 	/*
-	 * Sets a number in the number array
+	 * Sets a number in the number array. This has been called at setMerkki method, because setLuku does not know if there will be more desimals.
 	 */
 	public void setArvo(String arvo){
 		try {
@@ -106,12 +128,19 @@ public class LuoLista {
 		arvot.add(arvo);
 	}
 	/*
-	 * Sets operation in the operation array
+	 * Sets operation in the operation array and sends numbers to method witch adds them to array
 	 */
 	public void setEmerkki(String merkki){
 			merkit.add(merkki);
-			edellinen = "enumero";
+			edellinen = "emerkki";
+
 	}
+	/*
+	 * Sets operation in the operation array and sends numbers to method witch adds them to array
+	 * There are multiple checks before system accepts char to a list
+	 * It check what kind of char was before this one and after that more specific if this char needs special treatment
+	 * When this method accepts this char it first sets string luku to setArvo method
+	 */
 	public void setMerkki(String merkki){
 		if (Objects.equals(edellinen, "tyhja")){
 			edellinen = "numero";
@@ -123,17 +152,29 @@ public class LuoLista {
 				edellinen = "numero";
 				miinus = 0;
 			}
+			else if (Objects.equals(merkki, "(")){
+				setArvo(luku);
+				merkit.add("*");
+				edellinen = "merkki";
+				miinus = 0;
+			}
 			else{
 				setArvo(luku);
 				merkit.add(merkki);
 				edellinen = "merkki";
 				miinus = 0;
 			}
+
 		}
 		else if (Objects.equals(edellinen, "sulut")){
 				merkit.add(merkki);
 				edellinen = "merkki";
 				miinus = 0;
+		}
+		else if (Objects.equals(edellinen, "merkki")) {
+			if (Objects.equals(merkki, "(")) {
+				System.out.println("nothing");
+			}
 		}
 		else{
 			if (Objects.equals(edellinen, "-")){
@@ -171,18 +212,10 @@ public class LuoLista {
 		public ArrayList<Double> getArvotList(){
 			return arvot;
 		}
-		/*
-		 * Sets Pii to arvot()
-		 */
-		public void setPii(){
-			if (miinus == 0){
-				arvot.add(Math.PI);
-			}
-			if (miinus == 1){
-				arvot.add(0-Math.PI);
-			}
-		}
 
+		/*
+		 * Sets edellinen to sulut
+		 */
 		public void setEdellinenSulut(){
 			edellinen = "sulut";
 		}

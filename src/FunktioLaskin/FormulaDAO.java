@@ -1,6 +1,7 @@
 package FunktioLaskin;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * Created by mako on 9.11.2016.
