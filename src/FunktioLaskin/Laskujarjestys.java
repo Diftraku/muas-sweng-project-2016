@@ -32,7 +32,7 @@ public class Laskujarjestys {
 		 * Uses arrays to calculate right numbers and operations
 		 */
 		for (int i = 0; i < merkit.size(); i++){
-			if (Objects.equals(merkit.get(i), "N")){
+			if (Objects.equals(merkit.get(i), "q")){
 				laskin.neliojuuri((double) arvot.get(i));
 				arvot.set(i, laskin.annaTulos());
 				eka = 1;

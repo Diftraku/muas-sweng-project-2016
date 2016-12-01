@@ -81,19 +81,18 @@ public class Controller {
         String value = btn.getText();
 
         if (Objects.equals(value, "sqrt")) {
-            this.setValue("N");
+            this.setValue("q");
+        } else if (Objects.equals(value, "^")) {
+            this.setValue("^");
         } else if (Objects.equals(value, "PI")) {
             this.setValue("P");
-        }
-        else if (Objects.equals(value, "sin")) {
+        } else if (Objects.equals(value, "sin")) {
             this.setValue("s");
-        }
-        else if (Objects.equals(value, "cos")) {
+        } else if (Objects.equals(value, "cos")) {
             this.setValue("c");
-        }
-        else if (Objects.equals(value, "tan")) {
+        } else if (Objects.equals(value, "tan")) {
             this.setValue("t");
-        }else {
+        } else {
             this.setValue(value);
         }
         printToScreen(value);
