@@ -75,11 +75,17 @@ public class Controller {
         }
     }
 
+    /*
+     * starts operations when buttons have been clicked
+     */
     @FXML
     public void numbersAndOperators(ActionEvent e) {
         Button btn = (Button) e.getSource();
         String value = btn.getText();
 
+        /*
+         * Button witch have more than one char, need to convert to one char value
+         */
         if (Objects.equals(value, "sqrt")) {
             this.setValue("q");
         } else if (Objects.equals(value, "^")) {
@@ -93,11 +99,17 @@ public class Controller {
         } else if (Objects.equals(value, "tan")) {
             this.setValue("t");
         } else {
+            /*
+         * One char buttons are already cool
+         */
             this.setValue(value);
         }
         printToScreen(value);
     }
 
+    /*
+    * equals method puts equals char forward and triggers laskelopputulos() -method witch calculates answer
+    */
     @FXML
     public void equals(ActionEvent e) {
         String value = "=";
@@ -110,19 +122,26 @@ public class Controller {
         //printToScreen(value);
     }
 
+    /*
+   * Clears screen
+   */
     @FXML
     public void clear(ActionEvent e) {
         screen.clear();
         this.nollaa();
     }
-
+    /*
+     * Clears everything, both screen and calculator
+     */
     @FXML
     public void clearEverything(ActionEvent e) {
         screen.clear();
         this.nollaa();
         history.getItems().clear();
     }
-
+    /*
+     * brings old formula from history
+     */
     @FXML
     public void fetchHistory(MouseEvent e) {
         String selectedLine = history.getSelectionModel().getSelectedItem();
@@ -134,6 +153,9 @@ public class Controller {
         }
 
     }
+    /*
+ *
+ */
     @FXML
     public void handleScreenInput(KeyEvent keyEvent) {
         System.out.println(keyEvent.getCode());
@@ -148,7 +170,9 @@ public class Controller {
             //printToScreen(value);
         }
     }
-
+    /*
+     * puts bracket to its place
+     */
     @FXML
     public void brackets(ActionEvent e) {
         Button btn = (Button) e.getSource();
@@ -157,6 +181,9 @@ public class Controller {
         printToScreen(value);
     }
 
+    /*
+ *  removes last char from input
+ */
     @FXML
     public void backspace(ActionEvent e) {
 
@@ -193,6 +220,9 @@ public class Controller {
     	laskin.nollaa();
     	newString = "";
     }
+    /*
+ *  clears calculator, but saves latest answer
+ */
     public void nollaaJatkalaskua() {
         vanha = Tulos;
         laskin.nollaa();

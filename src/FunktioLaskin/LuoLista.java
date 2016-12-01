@@ -41,6 +41,7 @@ public class LuoLista {
 
 	/*
 	 * Sets values to methods witch makes lists
+	 * This method checks every possible button chars and puts the value in the right method
 	 */
 	public void luolista(String Value){
 		nollaa();
@@ -67,7 +68,11 @@ public class LuoLista {
 	}
 
 	/*
-	 *  Saves numbers to string, so that biger numbers and decimals are possible to save
+	 * Saves numbers to string, so that biger numbers and decimals are possible to save
+	 * There are multiple checks before system accepts char to a list
+	 * It check what kind of char was before this one and after that more specific if this char needs special treatment
+	 * It checks if there is need to add operations to merkitlist before this number or if this numper is Pii
+	 * It also checks is this number first or not to add string luku
 	 */
 
 	public void setLuku(String value){
@@ -104,7 +109,7 @@ public class LuoLista {
 		}
 	}
 	/*
-	 * Sets a number in the number array
+	 * Sets a number in the number array. This has been called at setMerkki method, because setLuku does not know if there will be more desimals.
 	 */
 	public void setArvo(String arvo){
 		try {
@@ -132,6 +137,9 @@ public class LuoLista {
 	}
 	/*
 	 * Sets operation in the operation array and sends numbers to method witch adds them to array
+	 * There are multiple checks before system accepts char to a list
+	 * It check what kind of char was before this one and after that more specific if this char needs special treatment
+	 * When this method accepts this char it first sets string luku to setArvo method
 	 */
 	public void setMerkki(String merkki){
 		if (Objects.equals(edellinen, "tyhja")){
