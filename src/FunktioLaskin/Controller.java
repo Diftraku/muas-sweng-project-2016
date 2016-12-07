@@ -2,15 +2,21 @@ package FunktioLaskin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 /*
  * Controller class
@@ -36,9 +42,10 @@ public class Controller {
     // JavaFX Elements
     @FXML
     private TextField screen;
-
     @FXML
     private ListView<String> history;
+    @FXML
+    private BorderPane root;
 
 
     /*
@@ -129,6 +136,15 @@ public class Controller {
     public void clear(ActionEvent e) {
         screen.clear();
         this.nollaa();
+    }
+    /*
+     * Sets new locale
+     */
+    @FXML
+    public void setLocale(ActionEvent e) throws IOException {
+        Scene scene = root.getScene();
+        ResourceBundle bundle = ResourceBundle.getBundle("locale_rw_RW");
+        scene.setRoot((Parent)FXMLLoader.load(getClass().getResource("/View.fxml"), bundle));
     }
     /*
      * Clears everything, both screen and calculator

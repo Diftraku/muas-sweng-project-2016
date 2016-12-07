@@ -14,31 +14,31 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FunktioLaskin.Controller">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FunktioLaskin.Controller">
    <top>
       <VBox prefHeight="200.0" BorderPane.alignment="CENTER">
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="Formulas">
+                <Menu mnemonicParsing="false" text="%firstmenu">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Add new formula" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" text="%firstmenu1" />
+                        <MenuItem mnemonicParsing="false" text="%firstmenu2" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Moar forumlas">
+                <Menu mnemonicParsing="false" text="%secondmenu">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" text="%secondmenu1" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="deez nuts">
+                <Menu mnemonicParsing="false" text="%thirdmenu">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="GOTIEEMMMM" />
+                    <MenuItem mnemonicParsing="false" text="%thirdmenu1" onAction="#setLocale"/>
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="Formulas">
+                  <Menu mnemonicParsing="false" text="%fourthmenu">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="%fourthmenu1" />
                      </items>
                   </Menu>
               </menus>

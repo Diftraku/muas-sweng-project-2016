@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 /*
  * Main class for starting the javafx application
@@ -25,7 +26,8 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-    	Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("locale");
+    	Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"), bundle);
 		stage.setTitle("Calculator");
 		stage.setScene(new Scene(root, 780, 600));
 		stage.show();
