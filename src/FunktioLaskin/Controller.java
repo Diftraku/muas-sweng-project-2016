@@ -171,8 +171,14 @@ public class Controller {
     */
     @FXML
     public void convertTosetValue(String form) {
+        String str;
         for (int i = 0; i < form.length(); i++){
-            setValue(Character.toString(form.charAt(i)));
+            str = Character.toString(form.charAt(i));
+            if(str.equals("(") || str.equals(")")) {
+                sulut(str);
+            }else {
+                setValue(str);
+            }
         }
     }
     @FXML
@@ -237,7 +243,16 @@ public class Controller {
  */
     @FXML
     public void backspace(ActionEvent e) {
-
+        String str = screen.getText();
+        str = str.substring(0, str.length()-1);
+        if(!screenIsEmpty() && screen.getText().length() > 1) {
+            this.nollaa();
+            this.convertTosetValue(str);
+            screen.setText(str);
+        }
+        System.out.println("backspace: " + str);
+        screen.undo();
+        screen.undo();
     }
 
     // Ye Olde code

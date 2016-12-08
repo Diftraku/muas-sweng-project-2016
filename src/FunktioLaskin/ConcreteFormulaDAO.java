@@ -13,11 +13,17 @@ public class ConcreteFormulaDAO implements FormulaDAO {
     private Formula formula;
     private Connection conn;
     private PreparedStatement statement;
+    private static ConcreteFormulaDAO dao = new ConcreteFormulaDAO();
 
-    public ConcreteFormulaDAO() {
+    private ConcreteFormulaDAO() {
+        //dao.connectDatabase();
+        conn = connectDatabase();
         //formula = new Formula();
     }
 
+    public static ConcreteFormulaDAO getInstance() {
+        return dao;
+    }
     /*
      * Finds a formula in database
      * @param id Formula id in the database used for the search parameter
@@ -28,9 +34,9 @@ public class ConcreteFormulaDAO implements FormulaDAO {
         String query = ("SELECT * FROM formulas WHERE id= ? ");
         Formula formula = new Formula();
         try {
-            if(!isConnected()) {
+            /*if(!isConnected()) {
                 conn = connectDatabase();
-            }
+            }*/
             statement = conn.prepareStatement(query);
             statement.setString(1, id);
             ResultSet result = statement.executeQuery();
@@ -54,9 +60,9 @@ public class ConcreteFormulaDAO implements FormulaDAO {
     public boolean deleteFormula(String id) {
         String query = "DELETE FROM formulas WHERE id= ?";
         try {
-            if(!isConnected()) {
+            /*if(!isConnected()) {
                 conn = connectDatabase();
-            }
+            }*/
             statement = conn.prepareStatement(query);
             statement.setString(1, id);
             statement.executeUpdate();
@@ -76,9 +82,9 @@ public class ConcreteFormulaDAO implements FormulaDAO {
     public boolean insertFormula(Formula formula) {
         String query = "INSERT INTO formulas (id, formula) VALUES (?, ?)";
         try {
-            if(!isConnected()) {
+            /*if(!isConnected()) {
                 conn = connectDatabase();
-            }
+            }*/
             statement = conn.prepareStatement(query);
             statement.setString(1, formula.getId());
             statement.setString(2, formula.getFormula());
