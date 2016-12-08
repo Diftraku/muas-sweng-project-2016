@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
  * Controller class
  */
 public class Controller {
+    private ConcreteFormulaDAO dao;
     private Laskin laskin;
     private Main main;
     private Laskujarjestys laske;
@@ -38,6 +39,7 @@ public class Controller {
     private int lisaai= 0;
     private double vanha=0;
     private double Tulos=0;
+
 
 
     // JavaFX Elements
@@ -161,6 +163,25 @@ public class Controller {
 
     }
     /*
+    @FXML
+    public void setFormula(ActionEvent e) throws IOException {
+        Formula formula = dao.findFormula("1");
+        screen.setText(formula.getFormula());
+    }
+    */
+    @FXML
+    public void convertTosetValue(String form) {
+        for (int i = 0; i < form.length(); i++){
+            setValue(Character.toString(form.charAt(i)));
+        }
+    }
+    @FXML
+    public void putinFormula(String form) {
+        for (int i = 0; i < form.length(); i++){
+            setValue(Character.toString(form.charAt(i)));
+        }
+    }
+    /*
      * Clears everything, both screen and calculator
      */
     @FXML
@@ -178,7 +199,7 @@ public class Controller {
         if (selectedLine != null) {
             String formula = selectedLine.substring(0, selectedLine.indexOf("="));
             this.nollaa();
-            this.setValue(formula);
+            this.convertTosetValue(formula);
             screen.setText(formula);
         }
 
