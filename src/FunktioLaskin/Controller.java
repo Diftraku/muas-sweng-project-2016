@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -143,8 +144,21 @@ public class Controller {
     @FXML
     public void setLocale(ActionEvent e) throws IOException {
         Scene scene = root.getScene();
-        ResourceBundle bundle = ResourceBundle.getBundle("locale_rw_RW");
-        scene.setRoot((Parent)FXMLLoader.load(getClass().getResource("/View.fxml"), bundle));
+        MenuItem item = (MenuItem)e.getSource();
+        System.out.println(item.getText());
+        if (Objects.equals(item.getText(), "English")){
+            ResourceBundle bundle = ResourceBundle.getBundle("locale");
+            scene.setRoot((Parent)FXMLLoader.load(getClass().getResource("/View.fxml"), bundle));
+        }
+        else if (Objects.equals(item.getText(), "France")){
+            ResourceBundle bundle = ResourceBundle.getBundle("locale_fr_FR");
+            scene.setRoot((Parent)FXMLLoader.load(getClass().getResource("/View.fxml"), bundle));
+        }
+        else if (Objects.equals(item.getText(), "Rwanda")){
+            ResourceBundle bundle = ResourceBundle.getBundle("locale_rw_RW");
+            scene.setRoot((Parent)FXMLLoader.load(getClass().getResource("/View.fxml"), bundle));
+        }
+
     }
     /*
      * Clears everything, both screen and calculator
