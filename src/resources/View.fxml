@@ -35,8 +35,8 @@
                 <Menu mnemonicParsing="false" text="%language">
                   <items>
                     <MenuItem mnemonicParsing="false" text="%eng" onAction="#setLocale"/>
-                      <MenuItem mnemonicParsing="false" text="%fra" onAction="#setLocale_fr_FR"/>
-                      <MenuItem mnemonicParsing="false" text="%rwa" onAction="#setLocale_rw_RW"/>
+                      <MenuItem mnemonicParsing="false" text="%fra" onAction="#setLocale"/>
+                      <MenuItem mnemonicParsing="false" text="%rwa" onAction="#setLocale"/>
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="%fourthmenu">
