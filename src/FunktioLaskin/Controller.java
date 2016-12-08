@@ -39,6 +39,10 @@ public class Controller {
     private int lisaai= 0;
     private double vanha=0;
     private double Tulos=0;
+    private int formulanum = 0;
+    private int formulaA = 0;
+    private int formulaB = 0;
+    private int formulaC = 0;
 
 
 
@@ -183,10 +187,37 @@ public class Controller {
     }
     @FXML
     public void putinFormula(String form) {
+        formulaA = 0;
+        formulaB = 0;
+        formulaC = 0;
         for (int i = 0; i < form.length(); i++){
-            setValue(Character.toString(form.charAt(i)));
+            if (Objects.equals(form.charAt(i), "c")){
+                formulaC = 1;
+            }
+            else if (Objects.equals(form.charAt(i), "b")){
+                formulaB = 1;
+            }
+            else if (Objects.equals(form.charAt(i), "a")){
+                formulaA = 1;
+            }
         }
+        if (Objects.equals(formulaA, 1)){
+            askLetter("a");
+        }
+        if (Objects.equals(formulaB, 1)){
+            askLetter("b");
+        }
+        if (Objects.equals(formulaC, 1)){
+            askLetter("c");
+        }
+
     }
+    @FXML
+    public void askLetter(String x){
+        screen.setText(x+" = ");
+    }
+
+
     /*
      * Clears everything, both screen and calculator
      */

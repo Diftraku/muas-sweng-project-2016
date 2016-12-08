@@ -20,20 +20,23 @@
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="%firstmenu">
+                <Menu mnemonicParsing="false" text="%formulas">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="%firstmenu1" />
-                        <MenuItem mnemonicParsing="false" text="%firstmenu2" />
+                    <MenuItem mnemonicParsing="false" text="%add" />
+                        <MenuItem mnemonicParsing="false" text="%delete" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="%secondmenu">
+                <Menu mnemonicParsing="false" text="%settings">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="%secondmenu1" />
+                      <MenuItem mnemonicParsing="false" text="%language" />
+                        <MenuItem mnemonicParsing="false" text="%help" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="%thirdmenu">
+                <Menu mnemonicParsing="false" text="%language">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="%thirdmenu1" onAction="#setLocale"/>
+                    <MenuItem mnemonicParsing="false" text="%eng" onAction="#setLocale"/>
+                      <MenuItem mnemonicParsing="false" text="%fra" onAction="#setLocale_fr_FR"/>
+                      <MenuItem mnemonicParsing="false" text="%rwa" onAction="#setLocale_rw_RW"/>
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="%fourthmenu">
