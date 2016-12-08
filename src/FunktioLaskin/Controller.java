@@ -146,15 +146,15 @@ public class Controller {
         Scene scene = root.getScene();
         MenuItem item = (MenuItem)e.getSource();
         System.out.println(item.getText());
-        if (Objects.equals(item.getText(), "English")){
+        if (Objects.equals(item.getText(), "English")|| Objects.equals(item.getText(), "Anglais") || Objects.equals(item.getText(), "Icyongereza")){
             ResourceBundle bundle = ResourceBundle.getBundle("locale");
             scene.setRoot((Parent)FXMLLoader.load(getClass().getResource("/View.fxml"), bundle));
         }
-        else if (Objects.equals(item.getText(), "France")){
+        else if (Objects.equals(item.getText(), "France")|| Objects.equals(item.getText(), "Français") || Objects.equals(item.getText(), "Igifaransa")){
             ResourceBundle bundle = ResourceBundle.getBundle("locale_fr_FR");
             scene.setRoot((Parent)FXMLLoader.load(getClass().getResource("/View.fxml"), bundle));
         }
-        else if (Objects.equals(item.getText(), "Rwanda")){
+        else if (Objects.equals(item.getText(), "Rwanda")|| Objects.equals(item.getText(), "Rwanda") || Objects.equals(item.getText(), "Ikinyarwanda")){
             ResourceBundle bundle = ResourceBundle.getBundle("locale_rw_RW");
             scene.setRoot((Parent)FXMLLoader.load(getClass().getResource("/View.fxml"), bundle));
         }
