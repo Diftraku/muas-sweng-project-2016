@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -79,6 +80,22 @@ public class Controller {
         }
     }
 
+    @FXML
+    public void FormulaOpen(ActionEvent event){
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaView.fxml"));
+    	   Scene newScene;
+           try {
+               newScene = new Scene(loader.load());
+           } catch (IOException ex) {
+               // TODO: handle error
+               return;
+           }
+           //stage.setScene(new Scene(root, 780, 600));
+           Stage inputStage = new Stage();
+          // inputStage.initOwner(primaryStage);
+           inputStage.setScene(newScene);
+           inputStage.show();
+    }
     @FXML
     public void printToScreen(String value) {
         if (screenIsEmpty()) {
