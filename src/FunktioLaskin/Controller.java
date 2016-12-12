@@ -3,6 +3,7 @@ package FunktioLaskin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -47,6 +49,7 @@ public class Controller {
     private int formulaC = 0;
     private String formula = "";
     private String formula2 = "";
+    private List<Formula> formulaList;
 
 
 
@@ -55,6 +58,8 @@ public class Controller {
     private TextField screen;
     @FXML
     private ListView<String> history;
+    @FXML
+    private ListView<String> formulalistview;
     @FXML
     private BorderPane root;
 
@@ -68,9 +73,12 @@ public class Controller {
         laske = new Laskujarjestys();
         listat = new ArrayList<String>();
         luolista = new LuoLista();
+        dao = ConcreteFormulaDAO.getInstance();
     }
-
-
+    /*
+     * Checks if the screen is empty. Used by a lot of methods before setting text to the screen.
+     * @return Returns true if is empty.
+     */
     @FXML
     public boolean screenIsEmpty() {
         if (screen.getText() != null && !screen.getText().isEmpty()) {
@@ -79,14 +87,31 @@ public class Controller {
             return true;
         }
     }
-
+    /*
+     * Loads all the formulas from the database to formula selection screen
+     * @param root Root node of the selection screen. Used to find the right ListView from the FXML
+     */
+    @FXML
+    public void loadFormulas(Node root) {
+        //Toisen asteen yhtälö (-b+N(b^2 - 4ac)):(2a)
+        formulaList = dao.findAllFormulas();
+        formulalistview = (ListView) root.lookup("#formulalistview");
+        for(int i=0; i<formulaList.size(); i++) {
+            System.out.println(formulaList.get(i).getFormula());
+            formulalistview.getItems().add(formulalistview.getItems().size(), formulaList.get(i).getFormula());
+        }
+    }
+    /*
+     * Opens the formula selection screen
+     */
     @FXML
     public void FormulaOpen(ActionEvent event){
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaView.fxml"));
     	   Scene newScene;
            try {
-               newScene = new Scene(loader.load());
-           } catch (IOException ex) {
+               newScene = new Scene((Parent)loader.load());
+           } catch (Exception ex) {
+               ex.printStackTrace();
                // TODO: handle error
                return;
            }
@@ -95,7 +120,24 @@ public class Controller {
           // inputStage.initOwner(primaryStage);
            inputStage.setScene(newScene);
            inputStage.show();
+           loadFormulas(newScene.getRoot());
     }
+
+    //DOES NOT WORK YET :(
+    @FXML
+    public void closeFormulaView(ActionEvent e) {
+        String selectedLine = formulalistview.getSelectionModel().getSelectedItem();
+        if (selectedLine != null) {
+            Button closeButton = (Button) e.getSource();
+            Stage stage = (Stage) closeButton.getScene().getWindow();
+            stage.close();
+            printToScreen(selectedLine);
+        }
+    }
+    /*
+     * Prints the value of a button to the screen. If screen is not empty value will be appended at the end.
+     * @param value Value that is going to be printed on the screen.
+     */
     @FXML
     public void printToScreen(String value) {
         if (screenIsEmpty()) {

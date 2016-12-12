@@ -1,6 +1,8 @@
 package FunktioLaskin;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mako on 9.11.2016.
@@ -10,6 +12,7 @@ import java.sql.*;
  */
 public class ConcreteFormulaDAO implements FormulaDAO {
 
+    private List<Formula> formulaList;
     private Formula formula;
     private Connection conn;
     private PreparedStatement statement;
@@ -46,6 +49,34 @@ public class ConcreteFormulaDAO implements FormulaDAO {
             formula.setId(id2);
             statement.close();
             return formula;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+    /*
+     * Finds all formulas in database
+     */
+    public List<Formula> findAllFormulas() {
+        String query = ("SELECT * FROM formulas");
+        formulaList = new ArrayList<Formula>();
+        try {
+            /*if(!isConnected()) {
+                conn = connectDatabase();
+            }*/
+            statement = conn.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            while(result.next()) {
+                formula = new Formula();
+                formula.setFormula(result.getString("formula"));
+                formula.setId(result.getString("id"));
+                formulaList.add(formula);
+                System.out.println("Formulas: " +formula.getId() + formula.getFormula());
+
+            }
+            statement.close();
+            return formulaList;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

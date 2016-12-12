@@ -43,6 +43,7 @@ public class DatabaseTest {
             assertTrue(false);
         }else {
             assertTrue(formula2.getFormula().equals("n!"));
+            dao.deleteFormula(id);
         }
     }
 

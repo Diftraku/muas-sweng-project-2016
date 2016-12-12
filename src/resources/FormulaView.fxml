@@ -15,11 +15,11 @@
          <children>
             <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="107.0" text="Pane1" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="105.0" text="Pane2" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="112.0" text="Pane3" />
+            <Button onAction="#closeFormulaView" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="112.0" text="Pane3" />
          </children>
       </HBox>
    </top>
    <center>
-      <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="formulalistview" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
