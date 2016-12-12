@@ -39,10 +39,13 @@ public class Controller {
     private int lisaai= 0;
     private double vanha=0;
     private double Tulos=0;
-    private int formulanum = 0;
+    private int isformula = 0;
+    private String formulanum = "";
     private int formulaA = 0;
     private int formulaB = 0;
     private int formulaC = 0;
+    private String formula = "";
+    private String formula2 = "";
 
 
 
@@ -100,23 +103,28 @@ public class Controller {
         /*
          * Button witch have more than one char, need to convert to one char value
          */
-        if (Objects.equals(value, "sqrt")) {
-            this.setValue("q");
-        } else if (Objects.equals(value, "^")) {
-            this.setValue("^");
-        } else if (Objects.equals(value, "PI")) {
-            this.setValue("P");
-        } else if (Objects.equals(value, "sin")) {
-            this.setValue("s");
-        } else if (Objects.equals(value, "cos")) {
-            this.setValue("c");
-        } else if (Objects.equals(value, "tan")) {
-            this.setValue("t");
-        } else {
+        if (Objects.equals(isformula, 1)){
+            numFormula(value);
+        }
+        else {
+            if (Objects.equals(value, "sqrt")) {
+                this.setValue("q");
+            } else if (Objects.equals(value, "^")) {
+                this.setValue("^");
+            } else if (Objects.equals(value, "PI")) {
+                this.setValue("P");
+            } else if (Objects.equals(value, "sin")) {
+                this.setValue("s");
+            } else if (Objects.equals(value, "cos")) {
+                this.setValue("c");
+            } else if (Objects.equals(value, "tan")) {
+                this.setValue("t");
+            } else {
             /*
          * One char buttons are already cool
          */
-            this.setValue(value);
+                this.setValue(value);
+            }
         }
         printToScreen(value);
     }
@@ -204,17 +212,79 @@ public class Controller {
         if (Objects.equals(formulaA, 1)){
             askLetter("a");
         }
-        if (Objects.equals(formulaB, 1)){
+        else if (Objects.equals(formulaB, 1)){
             askLetter("b");
         }
-        if (Objects.equals(formulaC, 1)){
+        else if (Objects.equals(formulaC, 1)){
             askLetter("c");
+        }
+        else{
+            screen.setText(form);
         }
 
     }
     @FXML
     public void askLetter(String x){
+        isformula = 1;
         screen.setText(x+" = ");
+
+    }
+    public void numFormula(String num){
+        formulaA = 0;
+        formulaB = 0;
+        formulaC = 0;
+        if (Objects.equals(num, "=")){
+            for (int i = 0; i < formula.length(); i++){
+                if (Objects.equals(formula.charAt(i), "a")){
+                    formulaA = 1;
+                }
+                else if (Objects.equals(formula.charAt(i), "b")){
+                    formulaB = 1;
+                }
+                else if (Objects.equals(formula.charAt(i), "c")){
+                    formulaC = 1;
+                }
+            }
+            if (Objects.equals(formulaA, "1")){
+                for (int i = 0; i < formula.length(); i++) {
+                    if (Objects.equals(formula.charAt(i), "a")){
+                        formula2 += formulanum;
+                    }
+                    else{
+                        formula2 += formula.charAt(i);
+                    }
+                }
+                formulaA = 0;
+            }
+            else if (Objects.equals(formulaB, "1")){
+                for (int i = 0; i < formula.length(); i++) {
+                    if (Objects.equals(formula.charAt(i), "b")){
+                        formula2 += formulanum;
+                    }
+                    else{
+                        formula2 += formula.charAt(i);
+                    }
+                }
+                formulaB = 0;
+            }
+            else if (Objects.equals(formulaC, "1")) {
+                for (int i = 0; i < formula.length(); i++) {
+                    if (Objects.equals(formula.charAt(i), "c")) {
+                        formula2 += formulanum;
+                    } else {
+                        formula2 += formula.charAt(i);
+                    }
+                }
+                formulaC = 0;
+            }
+            isformula = 0;
+            formula = formula2;
+            formula2 = "";
+            putinFormula(formula);
+        }
+        else {
+            formulanum += num;
+        }
     }
 
 
@@ -301,6 +371,13 @@ public class Controller {
         lasku = "";
         place = 0;
         luolista.nollaa();
+         formulanum = "";
+         formulaA = 0;
+         formulaB = 0;
+         formulaC = 0;
+         formula = "";
+        formula2 = "";
+        isformula = 0;
         //edellinen = "tyhja";
         //arvot.clear();
         //merkit.clear();
