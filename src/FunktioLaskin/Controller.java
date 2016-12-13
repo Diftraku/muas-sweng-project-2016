@@ -136,6 +136,14 @@ public class Controller {
             }
         }
     }
+    /*
+     * Returns string on the screen for testing purposes
+     * @return Text on screen as String
+     */
+    @FXML
+    public String getScreen() {
+        return screen.getText();
+    }
 
     /*
      * starts operations when buttons have been clicked
@@ -412,20 +420,18 @@ public class Controller {
     }
 
     /*
- *  removes last char from input
- */
+     * removes last char from input
+     */
     @FXML
     public void backspace(ActionEvent e) {
         String str = screen.getText();
         str = str.substring(0, str.length()-1);
-        if(!screenIsEmpty() && screen.getText().length() > 1) {
+        if(!screenIsEmpty() && screen.getText().length() >= 1) {
             this.nollaa();
             this.convertTosetValue(str);
             screen.setText(str);
         }
         System.out.println("backspace: " + str);
-        screen.undo();
-        screen.undo();
     }
 
     // Ye Olde code
@@ -596,6 +602,9 @@ public class Controller {
      */
     public double getTulos() {
         return Tulos;
+    }
+    public void setBundle(ResourceBundle b) {
+        this.bundle = b;
     }
 }
 

@@ -32,6 +32,7 @@ public class Main extends Application {
         Parent root = loader.load();
 		stage.setTitle("Calculator");
 		stage.setScene(new Scene(root, 780, 600));
+		Controller.getInstance().setBundle(bundle);
 		stage.show();
     }
 }
