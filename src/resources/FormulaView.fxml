@@ -13,9 +13,9 @@
    <top>
       <HBox prefHeight="79.0" prefWidth="605.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="107.0" text="Pane1" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="105.0" text="Pane2" />
-            <Button onAction="#closeFormulaView" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="112.0" text="Pane3" />
+            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="107.0" text="%mathtab" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="105.0" text="%physicstab" />
+            <Button onAction="#closeFormulaView" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="112.0" text="%chemistrytab" />
          </children>
       </HBox>
    </top>

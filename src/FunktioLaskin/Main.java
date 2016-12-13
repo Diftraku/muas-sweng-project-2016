@@ -29,7 +29,6 @@ public class Main extends Application {
         ResourceBundle bundle = ResourceBundle.getBundle("locale");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View.fxml"), bundle);
         loader.setController(Controller.getInstance());
-    	//Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"), bundle);
         Parent root = loader.load();
 		stage.setTitle("Calculator");
 		stage.setScene(new Scene(root, 780, 600));
