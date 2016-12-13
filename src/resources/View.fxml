@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox prefHeight="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -31,7 +31,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="%settings">
                   <items>
-                      <MenuItem mnemonicParsing="false" text="%language" />
+                      <MenuItem mnemonicParsing="false" text="%theme" />
                         <MenuItem mnemonicParsing="false" text="%help" />
                   </items>
                 </Menu>
@@ -42,11 +42,6 @@
                       <MenuItem mnemonicParsing="false" onAction="#setLocale" text="%rwa" />
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="%fourthmenu">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="%fourthmenu1" />
-                     </items>
-                  </Menu>
               </menus>
             </MenuBar>
             <HBox prefHeight="120.0">
