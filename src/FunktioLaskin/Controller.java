@@ -50,7 +50,10 @@ public class Controller {
     private String formula = "";
     private String formula2 = "";
     private List<Formula> formulaList;
-
+    private int first = 0;
+    private String a = "";
+    private String b = "";
+    private String c = "";
 
 
     // JavaFX Elements
@@ -257,6 +260,7 @@ public class Controller {
         formulaA = 0;
         formulaB = 0;
         formulaC = 0;
+        formula = form;
         for (int i = 0; i < form.length(); i++){
             if (Objects.equals(form.charAt(i), "c")){
                 formulaC = 1;
@@ -289,63 +293,82 @@ public class Controller {
 
     }
     public void numFormula(String num){
-        formulaA = 0;
-        formulaB = 0;
-        formulaC = 0;
+        first = 0;
         if (Objects.equals(num, "=")){
-            for (int i = 0; i < formula.length(); i++){
-                if (Objects.equals(formula.charAt(i), "a")){
-                    formulaA = 1;
-                }
-                else if (Objects.equals(formula.charAt(i), "b")){
-                    formulaB = 1;
-                }
-                else if (Objects.equals(formula.charAt(i), "c")){
-                    formulaC = 1;
-                }
-            }
             if (Objects.equals(formulaA, "1")){
-                for (int i = 0; i < formula.length(); i++) {
-                    if (Objects.equals(formula.charAt(i), "a")){
-                        formula2 += formulanum;
-                    }
-                    else{
-                        formula2 += formula.charAt(i);
-                    }
-                }
+                a = formulanum;
                 formulaA = 0;
             }
             else if (Objects.equals(formulaB, "1")){
-                for (int i = 0; i < formula.length(); i++) {
-                    if (Objects.equals(formula.charAt(i), "b")){
-                        formula2 += formulanum;
-                    }
-                    else{
-                        formula2 += formula.charAt(i);
-                    }
-                }
+                b = formulanum;
                 formulaB = 0;
             }
-            else if (Objects.equals(formulaC, "1")) {
-                for (int i = 0; i < formula.length(); i++) {
-                    if (Objects.equals(formula.charAt(i), "c")) {
-                        formula2 += formulanum;
-                    } else {
-                        formula2 += formula.charAt(i);
-                    }
-                }
+            else if (Objects.equals(formulaC, "1")){
+                c = formulanum;
                 formulaC = 0;
             }
-            isformula = 0;
-            formula = formula2;
-            formula2 = "";
-            putinFormula(formula);
+            else {
+                doFormula();
+            }
         }
         else {
             formulanum += num;
         }
+
     }
 
+    public void doFormula(){
+        first = 0;
+            for (int i = 0; i < formula.length(); i++) {
+                if (Objects.equals(formula.charAt(i), "a")) {
+                    if (Objects.equals(first, 0)) {
+                        formula2 = a;
+                        first = 1;
+                    } else {
+                        formula2 += a;
+                    }
+                } else {
+                    formula2 += formula.charAt(i);
+                    first = 1;
+                }
+            }
+            for (int i = 0; i < formula.length(); i++) {
+                if (Objects.equals(formula.charAt(i), "b")){
+                    if (Objects.equals(first, 0)){
+                        formula2 = b;
+                        first = 1;
+                    }
+                    else {
+                        formula2 += b;
+                    }
+                }
+                else{
+                    formula2 += formula.charAt(i);
+                    first = 1;
+                }
+            }
+
+            for (int i = 0; i < formula.length(); i++) {
+                if (Objects.equals(formula.charAt(i), "c")) {
+                    if (Objects.equals(first, 0)){
+                        formula2 = c;
+                        first = 1;
+                    }
+                    else {
+                        formula2 += c;
+                    }
+                } else {
+                    formula2 += formula.charAt(i);
+                    first = 1;
+                }
+            }
+
+        isformula = 0;
+        formula = formula2;
+        formula2 = "";
+        screen.setText(formula);
+        convertTosetValue(formula);
+    }
 
     /*
      * Clears everything, both screen and calculator
@@ -435,8 +458,12 @@ public class Controller {
          formulaB = 0;
          formulaC = 0;
          formula = "";
-        formula2 = "";
-        isformula = 0;
+         formula2 = "";
+         isformula = 0;
+         first = 0;
+         a = "";
+         b = "";
+         c = "";
         //edellinen = "tyhja";
         //arvot.clear();
         //merkit.clear();
