@@ -3,7 +3,6 @@ package FunktioLaskin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,11 +28,11 @@ public class Controller {
     private ConcreteFormulaDAO dao;
     private Laskin laskin;
     private Main main;
-    private Laskujarjestys laske;
+    private CalcOrder laske;
     ArrayList<String> listat;
     private String lasku = "";
     private int place = 0;
-    private LuoLista luolista;
+    private CreateList luolista;
     private char aChar;
     private String Valitulos;
     private CharSequence charplace = "x";
@@ -75,9 +74,9 @@ public class Controller {
     private Controller() {
         laskin = new Laskin();
         main = new Main();
-        laske = new Laskujarjestys();
+        laske = new CalcOrder();
         listat = new ArrayList<String>();
-        luolista = new LuoLista();
+        luolista = new CreateList();
         dao = ConcreteFormulaDAO.getInstance();
     }
     /*
