@@ -51,6 +51,8 @@ public class Controller {
     private String formula2 = "";
     private List<Formula> formulaList;
 
+    private static Controller controller = new Controller();
+
 
 
     // JavaFX Elements
@@ -67,13 +69,17 @@ public class Controller {
     /*
      * Constructor
      */
-    public Controller() {
+    private Controller() {
         laskin = new Laskin();
         main = new Main();
         laske = new Laskujarjestys();
         listat = new ArrayList<String>();
         luolista = new LuoLista();
         dao = ConcreteFormulaDAO.getInstance();
+    }
+
+    public static Controller getInstance() {
+        return controller;
     }
     /*
      * Checks if the screen is empty. Used by a lot of methods before setting text to the screen.
@@ -85,20 +91,6 @@ public class Controller {
             return false;
         } else {
             return true;
-        }
-    }
-    /*
-     * Loads all the formulas from the database to formula selection screen
-     * @param root Root node of the selection screen. Used to find the right ListView from the FXML
-     */
-    @FXML
-    public void loadFormulas(Node root) {
-        //Toisen asteen yhtälö (-b+N(b^2 - 4ac)):(2a)
-        formulaList = dao.findAllFormulas();
-        formulalistview = (ListView) root.lookup("#formulalistview");
-        for(int i=0; i<formulaList.size(); i++) {
-            System.out.println(formulaList.get(i).getFormula());
-            formulalistview.getItems().add(formulalistview.getItems().size(), formulaList.get(i).getFormula());
         }
     }
     /*
@@ -120,19 +112,7 @@ public class Controller {
           // inputStage.initOwner(primaryStage);
            inputStage.setScene(newScene);
            inputStage.show();
-           loadFormulas(newScene.getRoot());
-    }
-
-    //DOES NOT WORK YET :(
-    @FXML
-    public void closeFormulaView(ActionEvent e) {
-        String selectedLine = formulalistview.getSelectionModel().getSelectedItem();
-        if (selectedLine != null) {
-            Button closeButton = (Button) e.getSource();
-            Stage stage = (Stage) closeButton.getScene().getWindow();
-            stage.close();
-            printToScreen(selectedLine);
-        }
+           //loadFormulas(newScene.getRoot());
     }
     /*
      * Prints the value of a button to the screen. If screen is not empty value will be appended at the end.

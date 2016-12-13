@@ -27,7 +27,10 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("locale");
-    	Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View.fxml"), bundle);
+        loader.setController(Controller.getInstance());
+    	//Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"), bundle);
+        Parent root = loader.load();
 		stage.setTitle("Calculator");
 		stage.setScene(new Scene(root, 780, 600));
 		stage.show();
