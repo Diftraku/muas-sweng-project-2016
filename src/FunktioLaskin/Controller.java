@@ -273,6 +273,7 @@ public class Controller {
             }
         }
         if (Objects.equals(formulaA, 1)){
+            System.out.println("a");
             askLetter("a");
         }
         else if (Objects.equals(formulaB, 1)){
