@@ -59,6 +59,7 @@ public class ControllerFormulaView {
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.close();
             contr.printToScreen(selectedLine);
+            contr.setIsformula(selectedLine);
             contr.putinFormula(selectedLine);
         }
     }

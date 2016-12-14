@@ -187,14 +187,19 @@ public class Controller {
     */
     @FXML
     public void equals(ActionEvent e) {
-        String value = "=";
-        this.sulut(value);
-        this.laskelopputulos();
-        String historyLine = screen.getText()+"="+Double.toString(this.getTulos());
-        history.getItems().add(history.getItems().size(), historyLine);
-        history.scrollTo(historyLine);
-        screen.setText(Double.toString(this.getTulos()));
-        //printToScreen(value);
+        if (Objects.equals(isformula, 1)){
+            numFormula("=");
+        }
+        else {
+            String value = "=";
+            this.sulut(value);
+            this.laskelopputulos();
+            String historyLine = screen.getText() + "=" + Double.toString(this.getTulos());
+            history.getItems().add(history.getItems().size(), historyLine);
+            history.scrollTo(historyLine);
+            screen.setText(Double.toString(this.getTulos()));
+            //printToScreen(value);
+        }
     }
 
     /*
@@ -252,10 +257,7 @@ public class Controller {
             }
         }
     }
-    @FXML
-    public void putinFormula(String form) {
-        System.out.println("a");
-        formula = form;
+    public void setIsformula(String form){
         for (int i = 0; i < form.length(); i++){
             if (Objects.equals(form.charAt(i), 'c')){
                 formulaC = 1;
@@ -267,6 +269,11 @@ public class Controller {
                 formulaA = 1;
             }
         }
+    }
+    @FXML
+    public void putinFormula(String form) {
+        System.out.println(form);
+        formula = form;
         if (Objects.equals(formulaA, 1)){
             System.out.println("a");
             askLetter("a");
@@ -278,7 +285,9 @@ public class Controller {
             askLetter("c");
         }
         else{
-            screen.setText(form);
+            String historyLine2 = getScreen();
+            history.getItems().add(history.getItems().size(), historyLine2);
+            history.scrollTo(historyLine2);
             isformula = 0;
             numFormula("=");
         }
@@ -296,24 +305,34 @@ public class Controller {
     public void numFormula(String num){
         first = 0;
         if (Objects.equals(num, "=")){
-            if (Objects.equals(formulaA, "1")){
+            System.out.print(formulaA+", " +formulaB+", " +formulaC);
+            if (Objects.equals(formulaA, 1)){
                 a = formulanum;
+                formulanum = "";
                 formulaA = 0;
+                doFormulaA();
                 putinFormula(formula);
+
             }
-            else if (Objects.equals(formulaB, "1")){
+            else if (Objects.equals(formulaB, 1)){
                 b = formulanum;
+                formulanum = "";
                 formulaB = 0;
+                doFormulaB();
                 putinFormula(formula);
             }
-            else if (Objects.equals(formulaC, "1")){
+            else if (Objects.equals(formulaC, 1)){
                 c = formulanum;
+                formulanum = "";
                 formulaC = 0;
+                doFormulaC();
                 putinFormula(formula);
             }
             else {
-                formula += '=';
-                doFormula();
+                formula2 = "";
+                first = 0;
+                screen.setText(formula);
+                convertTosetValue(formula);
             }
         }
         else {
@@ -322,37 +341,44 @@ public class Controller {
 
     }
 
-    public void doFormula(){
+    public void doFormulaA() {
         first = 0;
-            for (int i = 0; i < formula.length(); i++) {
-                if (Objects.equals(formula.charAt(i), 'a')) {
-                    if (Objects.equals(first, 0)) {
-                        formula2 = a;
-                        first = 1;
-                    } else {
-                        formula2 += a;
-                    }
+        for (int i = 0; i < formula.length(); i++) {
+            if (Objects.equals(formula.charAt(i), 'a')) {
+                if (Objects.equals(first, 0)) {
+                    formula2 = a;
+                    first = 1;
                 } else {
-                    formula2 += formula.charAt(i);
-                    first = 1;
+                    formula2 += a;
                 }
+            } else {
+                formula2 += formula.charAt(i);
+                first = 1;
             }
-            for (int i = 0; i < formula.length(); i++) {
-                if (Objects.equals(formula.charAt(i), 'b')){
-                    if (Objects.equals(first, 0)){
-                        formula2 = b;
-                        first = 1;
-                    }
-                    else {
-                        formula2 += b;
-                    }
-                }
-                else{
-                    formula2 += formula.charAt(i);
+        }
+        formula = formula2;
+        formula2 = "";
+    }
+    public void doFormulaB() {
+        first = 0;
+        for (int i = 0; i < formula.length(); i++) {
+            if (Objects.equals(formula.charAt(i), 'b')) {
+                if (Objects.equals(first, 0)) {
+                    formula2 = b;
                     first = 1;
+                } else {
+                    formula2 += b;
                 }
+            } else {
+                formula2 += formula.charAt(i);
+                first = 1;
             }
-
+        }
+        formula = formula2;
+        formula2 = "";
+    }
+    public void doFormulaC(){
+        first = 0;
             for (int i = 0; i < formula.length(); i++) {
                 if (Objects.equals(formula.charAt(i), 'c')) {
                     if (Objects.equals(first, 0)){
@@ -367,12 +393,8 @@ public class Controller {
                     first = 1;
                 }
             }
-
         formula = formula2;
         formula2 = "";
-        first = 0;
-        screen.setText(formula);
-        convertTosetValue(formula);
     }
 
     /*
