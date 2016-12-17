@@ -1,6 +1,8 @@
 package FunktioLaskin;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mako on 9.11.2016.
@@ -10,14 +12,21 @@ import java.sql.*;
  */
 public class ConcreteFormulaDAO implements FormulaDAO {
 
+    private List<Formula> formulaList;
     private Formula formula;
     private Connection conn;
     private PreparedStatement statement;
+    private static ConcreteFormulaDAO dao = new ConcreteFormulaDAO();
 
-    public ConcreteFormulaDAO() {
+    private ConcreteFormulaDAO() {
+        //dao.connectDatabase();
+        conn = connectDatabase();
         //formula = new Formula();
     }
 
+    public static ConcreteFormulaDAO getInstance() {
+        return dao;
+    }
     /*
      * Finds a formula in database
      * @param id Formula id in the database used for the search parameter
@@ -28,9 +37,9 @@ public class ConcreteFormulaDAO implements FormulaDAO {
         String query = ("SELECT * FROM formulas WHERE id= ? ");
         Formula formula = new Formula();
         try {
-            if(!isConnected()) {
+            /*if(!isConnected()) {
                 conn = connectDatabase();
-            }
+            }*/
             statement = conn.prepareStatement(query);
             statement.setString(1, id);
             ResultSet result = statement.executeQuery();
@@ -47,6 +56,34 @@ public class ConcreteFormulaDAO implements FormulaDAO {
 
     }
     /*
+     * Finds all formulas in database
+     */
+    public List<Formula> findAllFormulas() {
+        String query = ("SELECT * FROM formulas");
+        formulaList = new ArrayList<Formula>();
+        try {
+            /*if(!isConnected()) {
+                conn = connectDatabase();
+            }*/
+            statement = conn.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            while(result.next()) {
+                formula = new Formula();
+                formula.setFormula(result.getString("formula"));
+                formula.setId(result.getString("id"));
+                formulaList.add(formula);
+                System.out.println("Formulas: " +formula.getId() + formula.getFormula());
+
+            }
+            statement.close();
+            return formulaList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+    /*
      * Deletes a formula from the database
      * @param id id Formula id in the database used for the search parameter
      * @return Returns true if successful deletion
@@ -54,9 +91,9 @@ public class ConcreteFormulaDAO implements FormulaDAO {
     public boolean deleteFormula(String id) {
         String query = "DELETE FROM formulas WHERE id= ?";
         try {
-            if(!isConnected()) {
+            /*if(!isConnected()) {
                 conn = connectDatabase();
-            }
+            }*/
             statement = conn.prepareStatement(query);
             statement.setString(1, id);
             statement.executeUpdate();
@@ -76,9 +113,9 @@ public class ConcreteFormulaDAO implements FormulaDAO {
     public boolean insertFormula(Formula formula) {
         String query = "INSERT INTO formulas (id, formula) VALUES (?, ?)";
         try {
-            if(!isConnected()) {
+            /*if(!isConnected()) {
                 conn = connectDatabase();
-            }
+            }*/
             statement = conn.prepareStatement(query);
             statement.setString(1, formula.getId());
             statement.setString(2, formula.getFormula());

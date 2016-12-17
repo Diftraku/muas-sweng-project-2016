@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
  * Created by mako on 10.11.2016.
  */
 public class DatabaseTest {
-    private static FormulaDAO dao = new ConcreteFormulaDAO();
+    private static FormulaDAO dao = ConcreteFormulaDAO.getInstance();
 
     @Before
     public void setUp() {
@@ -43,6 +43,7 @@ public class DatabaseTest {
             assertTrue(false);
         }else {
             assertTrue(formula2.getFormula().equals("n!"));
+            dao.deleteFormula(id);
         }
     }
 

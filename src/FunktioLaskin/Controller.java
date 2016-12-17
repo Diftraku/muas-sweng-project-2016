@@ -2,27 +2,37 @@ package FunktioLaskin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 /*
  * Controller class
  */
 public class Controller {
+    private ConcreteFormulaDAO dao;
     private Laskin laskin;
     private Main main;
-    private Laskujarjestys laske;
+    private CalcOrder laske;
     ArrayList<String> listat;
     private String lasku = "";
     private int place = 0;
-    private LuoLista luolista;
+    private CreateList luolista;
     private char aChar;
     private String Valitulos;
     private CharSequence charplace = "x";
@@ -31,28 +41,55 @@ public class Controller {
     private int lisaai= 0;
     private double vanha=0;
     private double Tulos=0;
+    private int isformula = 0;
+    private String formulanum = "";
+    private int formulaA = 0;
+    private int formulaB = 0;
+    private int formulaC = 0;
+    private String formula = "";
+    private String formula2 = "";
+    private List<Formula> formulaList;
+    private int first = 0;
+    private String a = "";
+    private String b = "";
+    private String c = "";
+    private static Controller controller = new Controller();
+    private ResourceBundle bundle;
 
 
     // JavaFX Elements
     @FXML
     private TextField screen;
-
     @FXML
     private ListView<String> history;
+    @FXML
+    private ListView<String> formulalistview;
+    @FXML
+    private BorderPane root;
 
 
     /*
      * Constructor
      */
-    public Controller() {
+    private Controller() {
         laskin = new Laskin();
         main = new Main();
-        laske = new Laskujarjestys();
+        laske = new CalcOrder();
         listat = new ArrayList<String>();
-        luolista = new LuoLista();
+        luolista = new CreateList();
+        dao = ConcreteFormulaDAO.getInstance();
+    }
+    /*
+     * Singleton method for getting the controller instance
+     */
+    public static Controller getInstance() {
+        return controller;
     }
 
-
+    /*
+     * Checks if the screen is empty. Used by a lot of methods before setting text to the screen.
+     * @return Returns true if is empty.
+     */
     @FXML
     public boolean screenIsEmpty() {
         if (screen.getText() != null && !screen.getText().isEmpty()) {
@@ -61,7 +98,32 @@ public class Controller {
             return true;
         }
     }
+    /*
+     * Opens the formula selection screen
+     */
+    @FXML
+    public void FormulaOpen(ActionEvent event){
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaView.fxml"), bundle);
+    	   Scene newScene;
+           try {
+               newScene = new Scene((Parent)loader.load());
+           } catch (Exception ex) {
+               ex.printStackTrace();
+               // TODO: handle error
+               return;
+           }
+           //stage.setScene(new Scene(root, 780, 600));
+           Stage inputStage = new Stage();
+          // inputStage.initOwner(primaryStage);
+           inputStage.setScene(newScene);
+           inputStage.show();
+           //loadFormulas(newScene.getRoot());
+    }
 
+    /*
+     * Prints the value of a button to the screen. If screen is not empty value will be appended at the end.
+     * @param value Value that is going to be printed on the screen.
+     */
     @FXML
     public void printToScreen(String value) {
         if (screenIsEmpty()) {
@@ -73,6 +135,14 @@ public class Controller {
                 screen.appendText(value);
             }
         }
+    }
+    /*
+     * Returns string on the screen for testing purposes
+     * @return Text on screen as String
+     */
+    @FXML
+    public String getScreen() {
+        return screen.getText();
     }
 
     /*
@@ -86,23 +156,28 @@ public class Controller {
         /*
          * Button witch have more than one char, need to convert to one char value
          */
-        if (Objects.equals(value, "sqrt")) {
-            this.setValue("q");
-        } else if (Objects.equals(value, "^")) {
-            this.setValue("^");
-        } else if (Objects.equals(value, "PI")) {
-            this.setValue("P");
-        } else if (Objects.equals(value, "sin")) {
-            this.setValue("s");
-        } else if (Objects.equals(value, "cos")) {
-            this.setValue("c");
-        } else if (Objects.equals(value, "tan")) {
-            this.setValue("t");
-        } else {
+        if (Objects.equals(isformula, 1)){
+            numFormula(value);
+        }
+        else {
+            if (Objects.equals(value, "sqrt")) {
+                this.setValue("q");
+            } else if (Objects.equals(value, "^")) {
+                this.setValue("^");
+            } else if (Objects.equals(value, "PI")) {
+                this.setValue("P");
+            } else if (Objects.equals(value, "sin")) {
+                this.setValue("s");
+            } else if (Objects.equals(value, "cos")) {
+                this.setValue("c");
+            } else if (Objects.equals(value, "tan")) {
+                this.setValue("t");
+            } else {
             /*
          * One char buttons are already cool
          */
-            this.setValue(value);
+                this.setValue(value);
+            }
         }
         printToScreen(value);
     }
@@ -112,14 +187,19 @@ public class Controller {
     */
     @FXML
     public void equals(ActionEvent e) {
-        String value = "=";
-        this.sulut(value);
-        this.laskelopputulos();
-        String historyLine = screen.getText()+"="+Double.toString(this.getTulos());
-        history.getItems().add(history.getItems().size(), historyLine);
-        history.scrollTo(historyLine);
-        screen.setText(Double.toString(this.getTulos()));
-        //printToScreen(value);
+        if (Objects.equals(isformula, 1)){
+            numFormula("=");
+        }
+        else {
+            String value = "=";
+            this.sulut(value);
+            this.laskelopputulos();
+            String historyLine = screen.getText() + "=" + Double.toString(this.getTulos());
+            history.getItems().add(history.getItems().size(), historyLine);
+            history.scrollTo(historyLine);
+            screen.setText(Double.toString(this.getTulos()));
+            //printToScreen(value);
+        }
     }
 
     /*
@@ -130,6 +210,193 @@ public class Controller {
         screen.clear();
         this.nollaa();
     }
+    /*
+     * Sets new locale
+     */
+    @FXML
+    public void setLocale(ActionEvent e) throws IOException {
+        Scene scene = root.getScene();
+        MenuItem item = (MenuItem)e.getSource();
+        System.out.println(item.getText());
+        if (Objects.equals(item.getText(), "English")|| Objects.equals(item.getText(), "Anglais") || Objects.equals(item.getText(), "Icyongereza")){
+            bundle = ResourceBundle.getBundle("locale");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View.fxml"), bundle);
+            loader.setController(Controller.getInstance());
+            scene.setRoot((Parent)loader.load());
+        }
+        else if (Objects.equals(item.getText(), "France")|| Objects.equals(item.getText(), "Français") || Objects.equals(item.getText(), "Igifaransa")){
+            bundle = ResourceBundle.getBundle("locale_fr_FR");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View.fxml"), bundle);
+            loader.setController(Controller.getInstance());
+            scene.setRoot((Parent)loader.load());
+        }
+        else if (Objects.equals(item.getText(), "Rwanda")|| Objects.equals(item.getText(), "Rwanda") || Objects.equals(item.getText(), "Ikinyarwanda")){
+            bundle = ResourceBundle.getBundle("locale_rw_RW");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View.fxml"), bundle);
+            loader.setController(Controller.getInstance());
+            scene.setRoot((Parent)loader.load());
+        }
+
+    }
+    /*
+    @FXML
+    public void setFormula(ActionEvent e) throws IOException {
+        Formula formula = dao.findFormula("1");
+        screen.setText(formula.getFormula());
+    }
+    */
+    @FXML
+    public void convertTosetValue(String form) {
+        String str;
+        for (int i = 0; i < form.length(); i++){
+            str = Character.toString(form.charAt(i));
+            if(str.equals("(") || str.equals(")")) {
+                sulut(str);
+            }else {
+                setValue(str);
+            }
+        }
+    }
+    public void setIsformula(String form){
+        for (int i = 0; i < form.length(); i++){
+            if (Objects.equals(form.charAt(i), 'c')){
+                formulaC = 1;
+            }
+            else if (Objects.equals(form.charAt(i), 'b')){
+                formulaB = 1;
+            }
+            else if (Objects.equals(form.charAt(i), 'a')){
+                formulaA = 1;
+            }
+        }
+    }
+    @FXML
+    public void putinFormula(String form) {
+        System.out.println(form);
+        formula = form;
+        if (Objects.equals(formulaA, 1)){
+            System.out.println("a");
+            askLetter("a");
+        }
+        else if (Objects.equals(formulaB, 1)){
+            askLetter("b");
+        }
+        else if (Objects.equals(formulaC, 1)){
+            askLetter("c");
+        }
+        else{
+            String historyLine2 = getScreen();
+            history.getItems().add(history.getItems().size(), historyLine2);
+            history.scrollTo(historyLine2);
+            isformula = 0;
+            numFormula("=");
+        }
+
+    }
+    @FXML
+    public void askLetter(String x){
+        isformula = 1;
+        String historyLine2 = getScreen();
+        history.getItems().add(history.getItems().size(), historyLine2);
+        history.scrollTo(historyLine2);
+        screen.setText(x+" = ");
+
+    }
+    public void numFormula(String num){
+        first = 0;
+        if (Objects.equals(num, "=")){
+            System.out.print(formulaA+", " +formulaB+", " +formulaC);
+            if (Objects.equals(formulaA, 1)){
+                a = formulanum;
+                formulanum = "";
+                formulaA = 0;
+                doFormulaA();
+                putinFormula(formula);
+
+            }
+            else if (Objects.equals(formulaB, 1)){
+                b = formulanum;
+                formulanum = "";
+                formulaB = 0;
+                doFormulaB();
+                putinFormula(formula);
+            }
+            else if (Objects.equals(formulaC, 1)){
+                c = formulanum;
+                formulanum = "";
+                formulaC = 0;
+                doFormulaC();
+                putinFormula(formula);
+            }
+            else {
+                formula2 = "";
+                first = 0;
+                screen.setText(formula);
+                convertTosetValue(formula);
+            }
+        }
+        else {
+            formulanum += num;
+        }
+
+    }
+
+    public void doFormulaA() {
+        first = 0;
+        for (int i = 0; i < formula.length(); i++) {
+            if (Objects.equals(formula.charAt(i), 'a')) {
+                if (Objects.equals(first, 0)) {
+                    formula2 = a;
+                    first = 1;
+                } else {
+                    formula2 += a;
+                }
+            } else {
+                formula2 += formula.charAt(i);
+                first = 1;
+            }
+        }
+        formula = formula2;
+        formula2 = "";
+    }
+    public void doFormulaB() {
+        first = 0;
+        for (int i = 0; i < formula.length(); i++) {
+            if (Objects.equals(formula.charAt(i), 'b')) {
+                if (Objects.equals(first, 0)) {
+                    formula2 = b;
+                    first = 1;
+                } else {
+                    formula2 += b;
+                }
+            } else {
+                formula2 += formula.charAt(i);
+                first = 1;
+            }
+        }
+        formula = formula2;
+        formula2 = "";
+    }
+    public void doFormulaC(){
+        first = 0;
+            for (int i = 0; i < formula.length(); i++) {
+                if (Objects.equals(formula.charAt(i), 'c')) {
+                    if (Objects.equals(first, 0)){
+                        formula2 = c;
+                        first = 1;
+                    }
+                    else {
+                        formula2 += c;
+                    }
+                } else {
+                    formula2 += formula.charAt(i);
+                    first = 1;
+                }
+            }
+        formula = formula2;
+        formula2 = "";
+    }
+
     /*
      * Clears everything, both screen and calculator
      */
@@ -148,7 +415,7 @@ public class Controller {
         if (selectedLine != null) {
             String formula = selectedLine.substring(0, selectedLine.indexOf("="));
             this.nollaa();
-            this.setValue(formula);
+            this.convertTosetValue(formula);
             screen.setText(formula);
         }
 
@@ -182,11 +449,18 @@ public class Controller {
     }
 
     /*
- *  removes last char from input
- */
+     * removes last char from input
+     */
     @FXML
     public void backspace(ActionEvent e) {
-
+        String str = screen.getText();
+        str = str.substring(0, str.length()-1);
+        if(!screenIsEmpty() && screen.getText().length() >= 1) {
+            this.nollaa();
+            this.convertTosetValue(str);
+            screen.setText(str);
+        }
+        System.out.println("backspace: " + str);
     }
 
     // Ye Olde code
@@ -204,6 +478,17 @@ public class Controller {
         lasku = "";
         place = 0;
         luolista.nollaa();
+         formulanum = "";
+         formulaA = 0;
+         formulaB = 0;
+         formulaC = 0;
+         formula = "";
+         formula2 = "";
+         isformula = 0;
+         first = 0;
+         a = "";
+         b = "";
+         c = "";
         //edellinen = "tyhja";
         //arvot.clear();
         //merkit.clear();
@@ -346,6 +631,9 @@ public class Controller {
      */
     public double getTulos() {
         return Tulos;
+    }
+    public void setBundle(ResourceBundle b) {
+        this.bundle = b;
     }
 }
 

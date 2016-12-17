@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
@@ -14,38 +18,35 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FunktioLaskin.Controller">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox prefHeight="200.0" BorderPane.alignment="CENTER">
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="Formulas">
+                <Menu mnemonicParsing="false" text="%formulas">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Add new formula" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" onAction="#FormulaOpen" text="%add" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Moar forumlas">
+                <Menu mnemonicParsing="false" text="%settings">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                      <MenuItem mnemonicParsing="false" text="%theme" />
+                        <MenuItem mnemonicParsing="false" text="%help" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="deez nuts">
+                <Menu mnemonicParsing="false" text="%language">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="GOTIEEMMMM" />
+                    <MenuItem mnemonicParsing="false" onAction="#setLocale" text="%eng" />
+                      <MenuItem mnemonicParsing="false" onAction="#setLocale" text="%fra" />
+                      <MenuItem mnemonicParsing="false" onAction="#setLocale" text="%rwa" />
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="Formulas">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                     </items>
-                  </Menu>
               </menus>
             </MenuBar>
             <HBox prefHeight="120.0">
                <children>
-                  <ListView editable="false" fx:id="history" onMouseClicked="#fetchHistory" HBox.hgrow="ALWAYS" />
+                  <ListView fx:id="history" editable="false" onMouseClicked="#fetchHistory" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox prefHeight="30.0">
@@ -86,7 +87,7 @@
             <Button fx:id="nine" layoutX="180.0" layoutY="185.0" mnemonicParsing="false" onAction="#numbersAndOperators" prefHeight="49.0" prefWidth="168.0" text="9" GridPane.columnIndex="3" GridPane.rowIndex="5" />
             <Button fx:id="bracket_right" layoutX="180.0" layoutY="185.0" mnemonicParsing="false" onAction="#brackets" prefHeight="49.0" prefWidth="168.0" text=")" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Button fx:id="zero" layoutX="10.0" layoutY="71.0" mnemonicParsing="false" onAction="#numbersAndOperators" prefHeight="49.0" prefWidth="168.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Button fx:id="dot" layoutX="180.0" layoutY="185.0" mnemonicParsing="false" onAction="#numbersAndOperators" prefHeight="49.0" prefWidth="168.0" text="," GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Button fx:id="dot" layoutX="180.0" layoutY="185.0" mnemonicParsing="false" onAction="#numbersAndOperators" prefHeight="49.0" prefWidth="168.0" text="." GridPane.columnIndex="3" GridPane.rowIndex="6" />
             <Button fx:id="bracket_left" layoutX="146.0" layoutY="106.0" mnemonicParsing="false" onAction="#brackets" prefHeight="49.0" prefWidth="168.0" text="(" GridPane.rowIndex="6" />
             <Button fx:id="PI" layoutX="10.0" layoutY="248.0" mnemonicParsing="false" onAction="#numbersAndOperators" prefHeight="49.0" prefWidth="168.0" text="PI" GridPane.rowIndex="3" />
             <Button fx:id="plus_minus" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#setAnswer" prefHeight="49.0" prefWidth="168.0" text="Ans" GridPane.rowIndex="5" />
